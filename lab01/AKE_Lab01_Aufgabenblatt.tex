@@ -1,0 +1,166 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{times}
+\usepackage[margin=2.2cm,top=2cm,bottom=2.2cm]{geometry}
+
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs,array,tabularx}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage{listings}
+\usepackage{fancyhdr}
+\usepackage[hidelinks]{hyperref}
+
+% ---- Farben wie im Skript -----------------------------------------------------------
+\definecolor{navy}{RGB}{23,42,92}
+\definecolor{orange}{RGB}{230,120,30}
+\definecolor{lightgray}{RGB}{242,242,242}
+\definecolor{green}{RGB}{40,120,60}
+
+\hypersetup{colorlinks=true,linkcolor=navy,urlcolor=navy}
+\lstset{basicstyle=\ttfamily\small,columns=fullflexible,keepspaces=true,
+        backgroundcolor=\color{lightgray},frame=none,xleftmargin=4pt,framexleftmargin=4pt}
+\newcommand{\code}[1]{\texttt{#1}}
+
+% ---- Boxen --------------------------------------------------------------------------
+\newtcolorbox{orgbox}[1]{enhanced,colback=lightgray,colframe=navy,boxrule=0.8pt,arc=1pt,
+  title={\textbf{#1}},fonttitle=\small,coltitle=white,colbacktitle=navy,left=5pt,right=5pt,top=4pt,bottom=4pt}
+\newtcolorbox{aufgabe}[2]{enhanced,breakable,colback=white,colframe=navy,boxrule=0.8pt,arc=1pt,
+  title={\textbf{Aufgabe #1: #2}},fonttitle=\normalsize,coltitle=white,colbacktitle=navy,left=6pt,right=6pt,top=5pt,bottom=5pt}
+\newtcolorbox{hinweis}{enhanced,colback=green!6,colframe=green,boxrule=0.6pt,arc=1pt,
+  title={\textbf{In der Praxis}},fonttitle=\small,coltitle=white,colbacktitle=green,left=5pt,right=5pt,top=3pt,bottom=3pt}
+\newtcolorbox{leitfragen}{colback=orange!7,colframe=orange!60,boxrule=0.5pt,arc=1pt,left=5pt,right=5pt,top=3pt,bottom=3pt}
+
+\pagestyle{fancy}\fancyhf{}
+\lhead{\small AKE -- Angewandte KI \& KI-Engineering}\rhead{\small Lab Woche 1 -- Aufgabenblatt}
+\cfoot{\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\setlength{\parindent}{0pt}\setlength{\parskip}{4pt}
+\setlist[itemize]{leftmargin=1.4em,itemsep=1pt,topsep=2pt}
+\setlist[enumerate]{leftmargin=1.6em,itemsep=1pt,topsep=2pt}
+
+\begin{document}
+
+% ---- Titel ----------------------------------------------------------------------------
+{\color{navy}\rule{1.5mm}{2.2cm}}\hspace{4mm}
+\begin{minipage}[c]{0.9\textwidth}
+  {\small\color{navy}Angewandte KI \& KI-Engineering (AKE) $\cdot$ Block A -- Vertiefung Deep Learning}\\[2pt]
+  {\LARGE\bfseries\color{navy}Lab Woche 1: MLP für MNIST}\\[3pt]
+  {\large Aufgabenblatt $\cdot$ Basis-Lab (eigener Rechner)}\\[3pt]
+  {\small Stefan Gnaase, PHWT $\cdot$ Wintersemester 2026/27 $\cdot$ Stand 28.\,September 2026}
+\end{minipage}
+
+\vspace{6pt}
+\textbf{Roter Faden.} Dieses Lab baut die Werkzeuge, mit denen im Rest des Semesters jedes Modell trainiert wird: Trainingsschleife, Optimierer, Regularisierung und die Fähigkeit, aus zwei Kurven die richtige Diagnose zu stellen. Das Trägermodell entsteht erst im nächsten Lab (\emph{CNNs \& Computer Vision}); die Repository-Struktur und die Trainingsschleife von heute werden dort unverändert weiterbenutzt.
+
+\begin{orgbox}{Organisatorisches -- Lab Woche 1}
+\small
+\begin{tabularx}{\textwidth}{@{}p{2.6cm}X@{}}
+Termin & KW 41 (08.10), 2-SWS-Lab-Block im Anschluss an den Theorieblock \\
+Skript & \emph{Vom Perzeptron zum Deep Network}, insbesondere Abschn.\ 3--8 (Theorie) und 9 (Lab) \\
+Material & Kursrepository, Ordner \code{labs/woche01/}: \code{setup\_check.ipynb}, \code{lab01\_starter.ipynb}, \code{results\_referenz/} (Referenz-Trainingslogs, falls eigene Läufe abbrechen) \\
+Umgebung & Python 3.11+, PyTorch (CPU-Build), torchvision, Jupyter, matplotlib -- aus der versionierten Environment-Datei (\code{uv sync} bzw.\ \code{conda env create -f environment.yml}) \\
+Daten & MNIST vom Hochschul-Share (Ordner \code{data/MNIST}, 65\,MB) nach \code{labs/woche01/data/} kopieren oder \code{AKE\_DATA} auf den Share-Pfad setzen; Fallback: automatischer Download (12\,MB) \\
+Rechenbudget & Referenzhardware 4 Kerne / 8\,GB RAM, keine GPU: reine Rechenzeit $\approx$ 8--12\,Min., davon $\approx$ 4\,Min.\ Baseline, $\approx$ 3\,Min.\ Optimierer-Sweep. Eine GPU oder Apple Silicon beschleunigt, ist aber nie Voraussetzung. \\
+Erweitertes Lab & Cluster-Einstieg und 60-Läufe-Sweep (E1--E3, Skript Abschn.\ 9) sind optional und \emph{nicht} Gegenstand dieses Blattes. \\
+Zeitplan & 45\,Min.\ Aufgabe 0 (Setup ist der kritische Pfad, nicht die Rechenzeit) $\cdot$ 45\,Min.\ Aufgaben 1--2 $\cdot$ Rest und Aufgaben 3--4 als Selbststudium bis zur Abgabe
+\end{tabularx}
+\end{orgbox}
+
+\section*{Lernziele}
+Nach diesem Lab können Sie
+\begin{itemize}
+  \item ein MLP in PyTorch definieren, trainieren und evaluieren, inklusive korrekter Trennung von Trainings-, Validierungs- und Testsplit (\emph{Anwenden});
+  \item Backpropagation und Vanishing Gradients an Gl.\ (29) des Skripts erklären und das Verhalten tiefer Netze mit Sigmoid vs.\ ReLU vorhersagen (\emph{Verstehen});
+  \item SGD, Momentum und Adam benennen und den Effekt der Lernrate aus einem Sweep ablesen (\emph{Erinnern, Analysieren});
+  \item Trainingsverläufe nach Abb.\ 19 / Tab.\ 5 diagnostizieren und eine Regularisierungsstrategie mit Tab.\ 4 begründen (\emph{Analysieren, Bewerten}).
+\end{itemize}
+
+\section*{Aufgaben}
+
+\begin{aufgabe}{0}{Umgebung einrichten und prüfen (Pflicht, ohne Abgabe)}
+\begin{enumerate}
+  \item Kursrepository klonen, Umgebung aus der Environment-Datei anlegen. Der CPU-Build von PyTorch ist $\approx$ 200\,MB; den CUDA-Build ($\approx$ 2,5\,GB) nur installieren, wenn Sie eine NVIDIA-GPU haben.
+  \item MNIST-Ordner vom Hochschul-Share nach \code{labs/woche01/data/} kopieren.
+  \item \code{setup\_check.ipynb} ausführen. Das Notebook prüft \code{torch.\_\_version\_\_}, Thread-Zahl, verfügbaren RAM, den MNIST-Bezug und misst die Laufzeit von 100 Trainingsschritten des Basis-MLP (Batch 64). Erwartung: hochgerechnet $\le 45$\,s pro Epoche auf 4 Kernen.
+  \item Alle Prüfungen grün: weiter mit Aufgabe 1. Sonst: Notebook-Protokoll in der Sprechstunde vorzeigen. Typische Stolpersteine: Proxy (\code{pip config set global.proxy}), Python-Version $<$ 3.11, fehlende Adminrechte (dann \code{uv} statt \code{conda}).
+\end{enumerate}
+\textbf{Hausaufgabe bis Woche 6:} Docker Desktop (Windows: WSL2 und Virtualisierung im BIOS erforderlich) oder Podman Desktop installieren -- wird im Lab \emph{MLOps} gebraucht, Installationscheck folgt im Lab \emph{Daten-Engineering}.
+\end{aufgabe}
+
+\begin{aufgabe}{1}{Baseline -- MLP 784--128--128--10}
+Trainieren Sie das MLP aus Listing 1 des Skripts (zwei verdeckte Schichten à 128 Einheiten, ReLU, Logit-Ausgabe) mit Adam ($\alpha = 10^{-3}$), Batch 64, 5 Epochen auf den 54\,000 Trainingsbildern. Validierung auf 6\,000 zurückgehaltenen Bildern, Testgenauigkeit \emph{einmalig} am Ende.
+\begin{enumerate}
+  \item Vervollständigen Sie die Klasse \code{MLP} im Starter-Notebook (variable Tiefe, Breite, Aktivierung, optional Dropout). Prüfen Sie die Parameterzahl: 118\,282 (Bsp.\ 3.2).
+  \item Debug-Protokoll, Schritt 1 (Abschn.\ 8): Verlust beim ersten Batch vor dem Training ausgeben. Erwartung $\approx \ln 10 = 2{,}30$.
+  \item Trainieren Sie 5 Epochen und plotten Sie Trainings- und Validierungsverlust je Epoche. Erwartung: 97--98\,\% Testgenauigkeit.
+\end{enumerate}
+\begin{leitfragen}\small
+\textbf{Interpretation:} Welchem der vier Grundmuster aus Abb.\ 19 entspricht Ihr Verlauf? Woran erkennen Sie, ob längeres Training noch etwas bringen würde? Warum darf die Ausgabeschicht kein Softmax enthalten (Abschn.\ 3.4)?
+\end{leitfragen}
+\end{aufgabe}
+
+\begin{aufgabe}{2}{Architektur -- Vanishing Gradients sichtbar machen}
+Bauen Sie ein 10-schichtiges Netz (10 verdeckte Schichten à 100 Einheiten), einmal mit Sigmoid und einmal mit ReLU, jeweils SGD mit $\epsilon = 0{,}1$.
+\begin{enumerate}
+  \item Führen Sie \emph{einen} Vorwärts- und Rückwärtsdurchlauf auf dem ersten Batch aus und messen Sie die Gradientennorm der ersten Schicht: \code{model.net[1].weight.grad.norm()}. Erweitern Sie die Messung auf alle Linear-Schichten und plotten Sie die Norm über der Schichtnummer (log-Skala).
+  \item Trainieren Sie beide Netze 3 Epochen auf dem 10\,000er-Subset \code{dl10k}. Zeichnen Sie $\ln 10$ als Referenzlinie ein.
+\end{enumerate}
+\begin{leitfragen}\small
+\textbf{Interpretation:} Erklären Sie das Verhältnis der Gradientennormen zwischen erster und letzter Schicht mit Gl.\ (29): Welcher Faktor in $J_l = \mathrm{diag}(\varphi'(\boldsymbol a_{l+1}))\,\boldsymbol W_{l+1}$ dämpft bei Sigmoid, welcher bei ReLU? Welche Zeile von Tab.\ 5 beschreibt den Sigmoid-Verlauf? Nennen Sie zwei Gegenmaßnahmen aus Abschn.\ 7.2 und ordnen Sie sie dem jeweiligen Faktor zu.
+\end{leitfragen}
+\end{aufgabe}
+
+\begin{aufgabe}{3}{Optimierer $\times$ Lernrate}
+Für SGD, SGD+Momentum ($\alpha = 0{,}9$) und Adam: Lernraten $\{10^{-4}, 10^{-3}, 10^{-2}, 10^{-1}\}$, je 2 Epochen, Baseline-Architektur, gleicher Seed für alle 12 Läufe. \textbf{Rechenbudget:} Der Sweep läuft auf dem 10\,000er-Subset (\code{dl10k}), validiert wird auf dem vollen Validierungssplit ($\approx$ 2--3\,Min.\ auf 4 Kernen).
+\begin{enumerate}
+  \item Protokollieren Sie den Validierungsverlust nach 2 Epochen als $3\times 4$-Tabelle; markieren Sie Läufe mit \code{NaN}/\code{inf} oder Verlust $\ge \ln 10$ als \emph{divergiert}.
+  \item Plotten Sie die Validierungskurven (ein Diagramm je Optimierer, eine Linie je Lernrate, log-Skala).
+\end{enumerate}
+\begin{leitfragen}\small
+\textbf{Interpretation:} Welche Kombination erreicht den geringsten Validierungsverlust, welche divergiert -- und warum (Abb.\ 11, Gl.\ 18, Abb.\ 13)? Über wie viele Zehnerpotenzen der Lernrate ist jeder Optimierer „brauchbar“? Was folgt daraus für Schritt 3 des Debug-Protokolls?
+\end{leitfragen}
+\end{aufgabe}
+
+\begin{aufgabe}{4}{Regularisierungs-Ablation bei Datenknappheit}
+Reduzieren Sie das Training auf 1\,000 Beispiele (\code{dl1k}) und trainieren Sie die Baseline-Architektur 50 Epochen mit Adam ($10^{-3}$) in vier Varianten: \emph{keine Regularisierung} / \emph{Weight Decay $10^{-3}$} / \emph{Dropout 0,5} / \emph{Early Stopping} (patience 5, Parameterstand am Validierungsminimum behalten).
+\begin{enumerate}
+  \item Plotten Sie Trainings- und Validierungsverlust aller Varianten in einem Diagramm, die Validierungsgenauigkeit in einem zweiten.
+  \item Tabelle: trainierte Epochen, bester Validierungsverlust, Testgenauigkeit (je Variante genau eine Testauswertung).
+  \item Optional: eine fünfte Variante Ihrer Wahl (z.\,B.\ Dropout + Early Stopping oder AdamW mit größerem $\lambda$).
+\end{enumerate}
+\begin{leitfragen}\small
+\textbf{Interpretation:} Beschreiben Sie die Schere der unregularisierten Variante (Abb.\ 14) -- warum steigt der Validierungs\emph{verlust}, während die Validierungs\emph{genauigkeit} kaum fällt (Tab.\ 5, letzte Zeile)? Warum wirkt Weight Decay $10^{-3}$ bei Adam kaum (Abschn.\ 6.2)? Warum liegt bei Dropout der Validierungsverlust zeitweise unter dem Trainingsverlust? Welche Kombination empfehlen Sie -- begründet mit der Reihenfolge aus Tab.\ 4?
+\end{leitfragen}
+\end{aufgabe}
+
+\begin{aufgabe}{5}{Optional -- Backpropagation in NumPy}
+Implementieren Sie \code{backward\_np} für das einschichtige MLP aus Bsp.\ 4.1 (ReLU, Softmax + Cross-Entropy, Mittelung über den Batch) und verifizieren Sie alle vier Gradienten per zentraler finiter Differenzen ($\varepsilon = 10^{-5}$) auf einem winzigen Netz in \code{float64}. Ziel: maximale Abweichung $< 10^{-7}$. Zählen Sie, wie viele Vorwärtsdurchläufe die numerische Prüfung benötigt, und vergleichen Sie mit Abschn.\ 4.3.
+\end{aufgabe}
+
+\section*{Hinweise}
+\begin{hinweis}\small
+\textbf{Debug-Protokoll vor jedem Experiment} (Skript Abschn.\ 8): (1) Verlust beim ersten Batch $\approx \ln C$; (2) einen Minibatch überfitten -- Verlust muss gegen 0 gehen, sonst ist es ein Codeproblem; (3) Lernrate über Zehnerpotenzen rastern, alles andere fest; (4) erst dann Architektur und Regularisierung -- eine Variable zugleich. Loggen Sie jeden Lauf (Seed, Konfiguration, Kurven) -- das Starter-Notebook schreibt \code{results/*.json}.
+\end{hinweis}
+\begin{itemize}
+  \item \textbf{Testsplit-Regel:} Der Testsplit dient je Aufgabe genau einer finalen Bewertung. Wer ihn zur Auswahl von Hyperparametern nutzt, misst eine zu optimistische Generalisierung (Abschn.\ 6.1).
+  \item \textbf{Reproduzierbarkeit:} \code{torch.manual\_seed(0)} vor \emph{jedem} Modell -- sonst vergleichen Sie in Aufgabe 3 und 4 verschiedene Startpunkte statt verschiedener Hyperparameter.
+  \item \textbf{\code{model.eval()} / \code{torch.no\_grad()}:} in der Evaluationsschleife Pflicht; sonst bleibt Dropout aktiv und die Aufzeichnung des Graphen kostet Speicher (Abschn.\ 4.6, 6.4).
+  \item \textbf{Fallback:} Bricht ein Lauf ab oder dauert er auf Ihrer Hardware zu lange, laden Sie das passende JSON aus \code{results\_referenz/} und bearbeiten Sie die Interpretation damit. Kennzeichnen Sie das im Notebook.
+  \item \textbf{Repository-Struktur:} Legen Sie jetzt \code{data/}, \code{src/}, \code{notebooks/}, \code{configs/}, \code{results/} an (Abschn.\ 9.3) -- das Trägermodell aus dem nächsten Lab und alle MLOps-Labs bauen darauf auf.
+\end{itemize}
+
+\begin{orgbox}{Organisatorisches -- Abgabe Lab Woche 1}
+\small
+\begin{tabularx}{\textwidth}{@{}p{2.6cm}X@{}}
+Was & Notebook \code{lab01\_<nachname>.ipynb} (\emph{Restart \& Run All} lauffähig, mit Ausgaben) + Ordner \code{results/} mit den JSON-Logs; Aufgaben 1--4 vollständig, Aufgabe 5 optional \\
+Wann & bis zum Beginn des Lab-Blocks in Woche 2 (KW 42), Upload im Kurs-Repository (\code{abgaben/woche01/}) \\
+Bewertung & Übungsleistung mit Rückmeldung (Prüfungsleistung ist das Capstone-Projekt). Kriterien je Aufgabe: Experiment reproduzierbar und Kurven vorhanden $\cdot$ Interpretation mit korrektem Skript-Bezug (Gleichung, Tabelle, Abbildung) $\cdot$ Testsplit-Regel eingehalten. Aufgabe 5: Bonus. \\
+Lösung & Lösungs-Notebook wird nach der Abgabefrist im Repository freigeschaltet \\
+Fragen & Sprechstunde im 2-SWS-Block; Setup-Probleme bitte mit Protokoll aus \code{setup\_check.ipynb}
+\end{tabularx}
+\end{orgbox}
+
+\end{document}
