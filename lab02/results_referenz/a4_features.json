@@ -1,0 +1,20 @@
+{
+ "seed": 0,
+ "torch": "2.8.0",
+ "threads": 4,
+ "config": {
+  "backbone": "ResNet-18",
+  "weights": "resnet18-f37072fd.pth",
+  "weights_sha256_12": "f37072fd47e8",
+  "size": 160,
+  "cache": "cache"
+ },
+ "seconds": {
+  "train": 17.460408583981916,
+  "val": 3.520435041980818
+ },
+ "n": {
+  "train": 2500,
+  "val": 500
+ }
+}

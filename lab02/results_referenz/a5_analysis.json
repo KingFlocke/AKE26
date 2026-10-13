@@ -1,0 +1,140 @@
+{
+ "seed": 0,
+ "torch": "2.8.0",
+ "threads": 4,
+ "config": {
+  "model": "Traegermodell nach 4.4",
+  "split": "val"
+ },
+ "val_acc": 0.984,
+ "classes": [
+  "Kettensaege",
+  "Kirche",
+  "Kassettenrecorder",
+  "Golfball",
+  "Fallschirm"
+ ],
+ "confusion": [
+  [
+   97,
+   2,
+   0,
+   1,
+   0
+  ],
+  [
+   0,
+   100,
+   0,
+   0,
+   0
+  ],
+  [
+   1,
+   0,
+   99,
+   0,
+   0
+  ],
+  [
+   0,
+   0,
+   0,
+   100,
+   0
+  ],
+  [
+   1,
+   2,
+   0,
+   1,
+   96
+  ]
+ ],
+ "precision": [
+  0.9797979797979798,
+  0.9615384615384616,
+  1.0,
+  0.9803921568627451,
+  1.0
+ ],
+ "recall": [
+  0.97,
+  1.0,
+  0.99,
+  1.0,
+  0.96
+ ],
+ "f1": [
+  0.9748743718592964,
+  0.9803921568627451,
+  0.9949748743718593,
+  0.99009900990099,
+  0.9795918367346939
+ ],
+ "top5": [
+  449,
+  411,
+  29,
+  26,
+  260
+ ],
+ "errors": [
+  {
+   "index": 449,
+   "file": "val/n03888257/n03888257_33170.JPEG",
+   "true": "Fallschirm",
+   "pred": "Kettensaege",
+   "p_pred": 0.9850000143051147
+  },
+  {
+   "index": 411,
+   "file": "val/n03888257/n03888257_12641.JPEG",
+   "true": "Fallschirm",
+   "pred": "Kirche",
+   "p_pred": 0.9589999914169312
+  },
+  {
+   "index": 29,
+   "file": "val/n03000684/n03000684_14882.JPEG",
+   "true": "Kettensaege",
+   "pred": "Kirche",
+   "p_pred": 0.9580000042915344
+  },
+  {
+   "index": 26,
+   "file": "val/n03000684/n03000684_14351.JPEG",
+   "true": "Kettensaege",
+   "pred": "Golfball",
+   "p_pred": 0.9240000247955322
+  },
+  {
+   "index": 260,
+   "file": "val/n02979186/n02979186_22992.JPEG",
+   "true": "Kassettenrecorder",
+   "pred": "Kettensaege",
+   "p_pred": 0.8029999732971191
+  },
+  {
+   "index": 400,
+   "file": "val/n03888257/ILSVRC2012_val_00038942.JPEG",
+   "true": "Fallschirm",
+   "pred": "Kirche",
+   "p_pred": 0.734000027179718
+  },
+  {
+   "index": 80,
+   "file": "val/n03000684/n03000684_4271.JPEG",
+   "true": "Kettensaege",
+   "pred": "Kirche",
+   "p_pred": 0.6320000290870667
+  },
+  {
+   "index": 414,
+   "file": "val/n03888257/n03888257_142.JPEG",
+   "true": "Fallschirm",
+   "pred": "Golfball",
+   "p_pred": 0.5210000276565552
+  }
+ ]
+}

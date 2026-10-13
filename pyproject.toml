@@ -37,6 +37,7 @@ dependencies = [
     # XAI
     "shap>=0.46",
     "grad-cam>=1.5.4",
+    "pyyaml>=6.0",
 ]
 
 [tool.uv]

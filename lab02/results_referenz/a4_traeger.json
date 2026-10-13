@@ -1,0 +1,14 @@
+{
+ "seed": 0,
+ "torch": "2.8.0",
+ "threads": 4,
+ "config": {
+  "yaml": "models/traeger_v1.yaml",
+  "state_dict": "models/traeger_v1.pt"
+ },
+ "load_test": {
+  "n_images": 20,
+  "max_abs_diff": 0.0,
+  "same_predictions": true
+ }
+}

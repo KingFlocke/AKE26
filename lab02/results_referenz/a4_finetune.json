@@ -1,0 +1,39 @@
+{
+ "seed": 0,
+ "torch": "2.8.0",
+ "threads": 4,
+ "train_loss": [
+  0.1396427397608757,
+  0.0751856557585299
+ ],
+ "train_acc": [
+  0.9552,
+  0.9768
+ ],
+ "val_loss": [
+  0.0613439402282238,
+  0.19764771994203328
+ ],
+ "val_acc": [
+  0.984,
+  0.938
+ ],
+ "epoch_time": [
+  29.46059274673462,
+  29.659176111221313
+ ],
+ "best_epoch": 1,
+ "config": {
+  "trainable": "fc+layer4",
+  "lr_head": 0.001,
+  "lr_backbone": 0.0001,
+  "batch": 32,
+  "epochs": 2,
+  "patience": 2,
+  "bn": "eval (eingefroren)",
+  "num_workers": 0,
+  "augmentation": "RandomResizedCrop(160, 0.5-1) + HFlip + ColorJitter(0.2)"
+ },
+ "runtime_s": 59.125032040989026,
+ "val_acc_best": 0.984
+}

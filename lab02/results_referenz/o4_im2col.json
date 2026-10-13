@@ -1,0 +1,27 @@
+{
+ "seed": 0,
+ "torch": "2.8.0",
+ "threads": 4,
+ "config": {
+  "kernel": "3x3",
+  "padding": 1,
+  "sizes": [
+   28,
+   160
+  ]
+ },
+ "timing_ms": {
+  "28x28": {
+   "Doppelschleife": 0.9504562593065202,
+   "im2col": 0.05265830550342798,
+   "F.conv2d": 0.004981248639523983,
+   "Faktor Schleife/im2col": 18.049503306646407
+  },
+  "160x160": {
+   "Doppelschleife": 31.061138957738876,
+   "im2col": 0.5780557015289863,
+   "F.conv2d": 0.06650000189741452,
+   "Faktor Schleife/im2col": 53.73381643945489
+  }
+ }
+}
