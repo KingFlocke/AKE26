@@ -1,0 +1,12 @@
+# Python-/uv-Umgebung
+.venv/
+__pycache__/
+.DS_Store
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Lab-Artefakte, die jede:r selbst erzeugt (Caches, eigene Logs, Checkpoints)
+lab*/cache/
+lab*/results/
+models/*.pt
