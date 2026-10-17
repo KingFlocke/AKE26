@@ -1,0 +1,125 @@
+{
+ "seed": 0,
+ "torch": "2.8.0",
+ "threads": 4,
+ "config": {
+  "korpus": {
+   "low": 5,
+   "lower": 2,
+   "newest": 6,
+   "widest": 3,
+   "wet": 2
+  },
+  "woerter": [
+   "unbelievably",
+   "Drehmomentschlüssel",
+   "2026-10-22",
+   "1e-3"
+  ]
+ },
+ "bpe_regeln": [
+  [
+   "t",
+   "_"
+  ],
+  [
+   "w",
+   "e"
+  ],
+  [
+   "s",
+   "t_"
+  ]
+ ],
+ "bpe_lowest": [
+  "l",
+  "o",
+  "we",
+  "st_"
+ ],
+ "zerlegung": {
+  "unbelievably": {
+   "WordPiece": [
+    "un",
+    "##bel",
+    "##ie",
+    "##va",
+    "##bly"
+   ],
+   "n WP": 5,
+   "Byte-BPE": [
+    "un",
+    "bel",
+    "iev",
+    "ably"
+   ],
+   "n BPE": 4
+  },
+  "Drehmomentschlüssel": {
+   "WordPiece": [
+    "dr",
+    "##eh",
+    "##mo",
+    "##ments",
+    "##ch",
+    "##lus",
+    "##sel"
+   ],
+   "n WP": 7,
+   "Byte-BPE": [
+    "D",
+    "re",
+    "hm",
+    "om",
+    "ents",
+    "ch",
+    "l",
+    "Ã¼",
+    "s",
+    "sel"
+   ],
+   "n BPE": 10
+  },
+  "2026-10-22": {
+   "WordPiece": [
+    "202",
+    "##6",
+    "-",
+    "10",
+    "-",
+    "22"
+   ],
+   "n WP": 6,
+   "Byte-BPE": [
+    "20",
+    "26",
+    "-",
+    "10",
+    "-",
+    "22"
+   ],
+   "n BPE": 6
+  },
+  "1e-3": {
+   "WordPiece": [
+    "1",
+    "##e",
+    "-",
+    "3"
+   ],
+   "n WP": 4,
+   "Byte-BPE": [
+    "1",
+    "e",
+    "-",
+    "3"
+   ],
+   "n BPE": 4
+  }
+ },
+ "laengen_median": 230.0,
+ "laengen_mittel": 308.0764,
+ "anteil_gt128": 0.8888,
+ "anteil_gt256": 0.4288,
+ "anteil_gt512": 0.1398
+}

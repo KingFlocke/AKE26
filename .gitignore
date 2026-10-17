@@ -10,3 +10,9 @@ __pycache__/
 lab*/cache/
 lab*/results/
 models/*.pt
+
+# Lab 3: DistilBERT-Gewichte (268 MB > GitHub-Limit von 100 MB) laedt lab03/setup_check.ipynb einmalig vom Hub
+data/models/distilbert-base-uncased/model.safetensors
+data/models/distilbert-base-uncased/.cache/
+lab02/lab02_loesung.ipynb
+lab03/lab03_loesung.ipynb
