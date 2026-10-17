@@ -2,7 +2,7 @@
 name = "ake-labs"
 version = "2026.1"
 description = "Laborumgebung für Angewandte KI & KI-Engineering (AKE), WS 2026/27"
-requires-python = ">=3.11,<3.13"
+requires-python = ">=3.12,<3.13"
 dependencies = [
     # Notebook-Oberfläche (bewusst Jupyter Notebook, keine KI-Erweiterungen)
     "notebook>=7.2",
@@ -17,6 +17,7 @@ dependencies = [
     "pyarrow>=17",
     "matplotlib>=3.9",
     "scikit-learn>=1.5",
+    "scipy>=1.18",
     "psutil>=6.0",
     # Sequenzmodelle, Transformer, LLM-Anpassung
     "transformers>=4.46,<5",

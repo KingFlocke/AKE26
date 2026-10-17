@@ -1,0 +1,53 @@
+{
+ "seed": 0,
+ "torch": "2.8.0",
+ "threads": 4,
+ "config": {
+  "latenz": "Median, Batch 1, 3 Aufwaermlaeufe + 10 Messungen, padding=max_length"
+ },
+ "latenz_ms": {
+  "MiniLM|n128": 10.41849993634969,
+  "MiniLM|n512": 37.023104494437575,
+  "DistilBERT|n128": 25.802250020205975,
+  "DistilBERT|n512": 58.14777058549225
+ },
+ "latenz_bert_base_ms": {
+  "128": 34.739291528239846,
+  "512": 97.0262709306553
+ },
+ "tabelle": [
+  {
+   "Modell": "MiniLM + LogReg (Stufe 1)",
+   "Testgenauigkeit": 0.792,
+   "trainierbare Param.": 385,
+   "Param. gesamt": 22713601,
+   "Gewichte (MB)": 90.852864,
+   "Trainingszeit (s)": 32.598500130930915,
+   "Latenz n=128 (ms)": 10.41849993634969,
+   "Latenz n=512 (ms)": 37.023104494437575,
+   "Quelle": "eigener Lauf"
+  },
+  {
+   "Modell": "DistilBERT-FT (Stufe 2)",
+   "Testgenauigkeit": 0.818,
+   "trainierbare Param.": 66955010,
+   "Param. gesamt": 66955010,
+   "Gewichte (MB)": 267.82004,
+   "Trainingszeit (s)": 42.95177850010805,
+   "Latenz n=128 (ms)": 25.802250020205975,
+   "Latenz n=512 (ms)": 58.14777058549225,
+   "Quelle": "eigener Lauf"
+  },
+  {
+   "Modell": "BERT-base-FT",
+   "Testgenauigkeit": 0.946,
+   "trainierbare Param.": 109483778,
+   "Param. gesamt": 109483778,
+   "Gewichte (MB)": 437.9,
+   "Trainingszeit (s)": NaN,
+   "Latenz n=128 (ms)": 34.739291528239846,
+   "Latenz n=512 (ms)": 97.0262709306553,
+   "Quelle": "Literaturwert, Latenz gemessen"
+  }
+ ]
+}
