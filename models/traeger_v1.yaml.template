@@ -1,0 +1,57 @@
+# Vorlage für die Modellkarte des Trägermodells (Lab 2, Aufgabe 4.5; Skript Abschn. 5.4).
+# Das Notebook liest diese Datei, füllt die mit null markierten Werte und speichert das Ergebnis als
+# models/traeger_v1.yaml. Schlüssel nicht umbenennen: src/traeger.py (load_traeger) und alle späteren
+# Labs (DVC, FastAPI-Service, Monitoring, XAI) lesen genau dieses Schema.
+name: traeger
+version: v1
+state_dict: traeger_v1.pt
+task: Bildklassifikation, 5 Klassen (Imagenette-Teilmenge)
+architecture:
+  backbone: ResNet-18 (torchvision), ImageNet-vortrainiert
+  head: Linear 512 -> 5
+  params_total: null              # automatisch: Parameterzahl des Modells (vorgegebener Code)
+  backbone_weights_file: torchvision IMAGENET1K_V1
+  backbone_weights_sha256_12: null  # automatisch: sha256[:12] von data/models/resnet18-f37072fd.pth
+  trained_stages: layer4 + fc
+classes: null                     # TODO 4.5: Liste aus data/imagenette5/classes.json, je Eintrag {index, name, wnid}
+output: Logits der Laenge 5 in classes-Reihenfolge; Softmax erst im Service
+preprocessing:
+  color: RGB
+  resize_short_side: null         # TODO 4.5: kürzere Bildseite in Pixel (make_transform, SIZE)
+  center_crop: null               # TODO 4.5: Kantenlänge des Center-Crops in Pixel
+  mean: null                      # TODO 4.5: ImageNet-Mittelwert je Kanal (Liste mit 3 Zahlen)
+  std: null                       # TODO 4.5: ImageNet-Standardabweichung je Kanal (Liste mit 3 Zahlen)
+  layout: (N, C, H, W)
+data:
+  dataset: imagenette5 (kuratierte Imagenette-Teilmenge, 160 px)
+  split_files:
+  - train.txt
+  - val.txt
+  n_train: null                   # automatisch: Anzahl Einträge in train.txt
+  n_val: null                     # automatisch: Anzahl Einträge in val.txt
+training:
+  seed: null                      # TODO 4.5: Seed aller Läufe
+  torch: null                     # automatisch: torch.__version__
+  stage1_feature_extraction:
+    lr: null                      # TODO 4.5: gewählte Lernrate des Kopfes (Aufgabe 4.3)
+    weight_decay: 0.0
+    epochs: null                  # TODO 4.5: Epochen Feature-Extraktion
+    batch: null                   # TODO 4.5: Batchgröße Feature-Extraktion
+    opt: Adam
+  stage2_finetune:
+    trainable: fc + layer4
+    lr_head: null                 # TODO 4.5: Lernrate Kopf (Aufgabe 4.4)
+    lr_backbone: null             # TODO 4.5: Lernrate layer4 (Aufgabe 4.4)
+    epochs: null                  # TODO 4.5: Epochen Fine-Tuning
+    batch: null                   # TODO 4.5: Batchgröße Fine-Tuning
+    best_epoch: null              # TODO 4.5: Epoche, deren Stand gespeichert wird
+    bn: eval
+    augmentation: RandomResizedCrop+HFlip+ColorJitter
+metrics_val:
+  accuracy: null                  # TODO 4.5: Validierungsgenauigkeit nach dem Fine-Tuning (0..1)
+  balanced_accuracy: null         # automatisch in Aufgabe 5.2
+  macro_f1: null                  # automatisch in Aufgabe 5.2
+  precision: null                 # automatisch in Aufgabe 5.2 (je Klasse)
+  recall: null                    # automatisch in Aufgabe 5.2 (je Klasse)
+  confusion_matrix: null          # automatisch in Aufgabe 5.1/5.2
+created: null                     # automatisch: Datum JJJJ-MM-TT
