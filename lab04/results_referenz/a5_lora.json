@@ -1,0 +1,520 @@
+{
+ "seed": 0,
+ "torch": "2.8.0+cu128",
+ "threads": 2,
+ "quoten": {
+  "format_ok": 1.0,
+  "schema_ok": 0.88,
+  "anlage_ok": 0.66,
+  "messwert_ok": 0.74,
+  "komplett": 0.56,
+  "streng": 0.0
+ },
+ "n": 50,
+ "einzeln": [
+  {
+   "format_ok": true,
+   "schema_ok": false,
+   "anlage_ok": false,
+   "messwert_ok": false,
+   "komplett": false,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": true,
+   "anlage_ok": true,
+   "messwert_ok": true,
+   "komplett": true,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": true,
+   "anlage_ok": true,
+   "messwert_ok": true,
+   "komplett": true,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": true,
+   "anlage_ok": true,
+   "messwert_ok": true,
+   "komplett": true,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": true,
+   "anlage_ok": true,
+   "messwert_ok": true,
+   "komplett": true,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": true,
+   "anlage_ok": true,
+   "messwert_ok": true,
+   "komplett": true,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": false,
+   "anlage_ok": false,
+   "messwert_ok": false,
+   "komplett": false,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": false,
+   "anlage_ok": false,
+   "messwert_ok": false,
+   "komplett": false,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": true,
+   "anlage_ok": true,
+   "messwert_ok": false,
+   "komplett": false,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": true,
+   "anlage_ok": true,
+   "messwert_ok": false,
+   "komplett": false,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": true,
+   "anlage_ok": true,
+   "messwert_ok": true,
+   "komplett": true,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": true,
+   "anlage_ok": true,
+   "messwert_ok": true,
+   "komplett": true,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": true,
+   "anlage_ok": true,
+   "messwert_ok": false,
+   "komplett": false,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": false,
+   "anlage_ok": false,
+   "messwert_ok": false,
+   "komplett": false,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": true,
+   "anlage_ok": true,
+   "messwert_ok": true,
+   "komplett": true,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": true,
+   "anlage_ok": true,
+   "messwert_ok": true,
+   "komplett": true,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": true,
+   "anlage_ok": true,
+   "messwert_ok": true,
+   "komplett": true,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": true,
+   "anlage_ok": true,
+   "messwert_ok": true,
+   "komplett": true,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": false,
+   "anlage_ok": false,
+   "messwert_ok": false,
+   "komplett": false,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": true,
+   "anlage_ok": true,
+   "messwert_ok": true,
+   "komplett": true,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": true,
+   "anlage_ok": true,
+   "messwert_ok": true,
+   "komplett": true,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": true,
+   "anlage_ok": true,
+   "messwert_ok": true,
+   "komplett": true,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": true,
+   "anlage_ok": true,
+   "messwert_ok": true,
+   "komplett": true,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": true,
+   "anlage_ok": true,
+   "messwert_ok": false,
+   "komplett": false,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": true,
+   "anlage_ok": true,
+   "messwert_ok": true,
+   "komplett": true,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": true,
+   "anlage_ok": true,
+   "messwert_ok": true,
+   "komplett": true,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": true,
+   "anlage_ok": true,
+   "messwert_ok": true,
+   "komplett": true,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": true,
+   "anlage_ok": false,
+   "messwert_ok": true,
+   "komplett": false,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": false,
+   "anlage_ok": false,
+   "messwert_ok": false,
+   "komplett": false,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": true,
+   "anlage_ok": true,
+   "messwert_ok": false,
+   "komplett": false,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": true,
+   "anlage_ok": true,
+   "messwert_ok": true,
+   "komplett": true,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": true,
+   "anlage_ok": true,
+   "messwert_ok": true,
+   "komplett": true,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": true,
+   "anlage_ok": true,
+   "messwert_ok": true,
+   "komplett": true,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": true,
+   "anlage_ok": true,
+   "messwert_ok": true,
+   "komplett": true,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": true,
+   "anlage_ok": true,
+   "messwert_ok": true,
+   "komplett": true,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": true,
+   "anlage_ok": true,
+   "messwert_ok": true,
+   "komplett": true,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": true,
+   "anlage_ok": true,
+   "messwert_ok": true,
+   "komplett": true,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": true,
+   "anlage_ok": true,
+   "messwert_ok": true,
+   "komplett": true,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": true,
+   "anlage_ok": true,
+   "messwert_ok": true,
+   "komplett": true,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": true,
+   "anlage_ok": true,
+   "messwert_ok": true,
+   "komplett": true,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": true,
+   "anlage_ok": false,
+   "messwert_ok": true,
+   "komplett": false,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": true,
+   "anlage_ok": false,
+   "messwert_ok": false,
+   "komplett": false,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": true,
+   "anlage_ok": false,
+   "messwert_ok": false,
+   "komplett": false,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": true,
+   "anlage_ok": false,
+   "messwert_ok": true,
+   "komplett": false,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": true,
+   "anlage_ok": false,
+   "messwert_ok": true,
+   "komplett": false,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": true,
+   "anlage_ok": false,
+   "messwert_ok": true,
+   "komplett": false,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": true,
+   "anlage_ok": false,
+   "messwert_ok": true,
+   "komplett": false,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": true,
+   "anlage_ok": false,
+   "messwert_ok": true,
+   "komplett": false,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": true,
+   "anlage_ok": false,
+   "messwert_ok": true,
+   "komplett": false,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": true,
+   "anlage_ok": false,
+   "messwert_ok": true,
+   "komplett": false,
+   "streng": false
+  }
+ ],
+ "ausgaben": [
+  "{\"anlage\": \"Kompressor 9\", \"symptom\": \"Überstandan\", \"messwert\": \"12%, Ölstandan informiert\", \"ursache\": \"Überstandan informiert\"}",
+  "{\"anlage\": \"Schweißroboter 9\", \"symptom\": \"Kühlwasser\", \"messwert\": \"53 °C\", \"ursache\": \"Pumpe Kühlkreislauf\", \"massnahme\": \"Übertaubende Kühlkreislauf\"}",
+  "{\"anlage\": \"Förderband 6\", \"symptom\": \"Schwertung\", \"messwert\": null, \"ursache\": null, \"massnahme\": null}",
+  "{\"anlage\": \"Lackieranlage 7\", \"symptom\": \"Kopfklopf\", \"messwert\": null, \"ursache\": \"Zahnradschaden\", \"massnahme\": \"Getriebe informiert\"}",
+  "{\"anlage\": \"Kompressor 8\", \"symptom\": \"Überstand\", \"messwert\": \"17 %\", \"ursache\": \"Überstandabfall\", \"massnahme\": \"Ölwanne abgeschaltet\"}",
+  "{\"anlage\": \"Förderband 7\", \"symptom\": \"Ausbruch\", \"messwert\": \"102 °C\", \"ursache\": null, \"massnahme\": \"Bewertung bestellt\"}",
+  "{\"anlage\": \"Fräszentrum 8\", \"symptom\": \"Antrieb 13 A\", \"messwert\": \"13 A\", \"ursache\": \"Motorwicklung abgeschädigt\"}",
+  "{\"anlage\": \"Kompressor 8\", \"symptom\": \"Lagerstand\", \"messwert\": \"91 °C\", \"ursache\": \"Schichtleiter informiert\"}",
+  "{\"anlage\": \"Schweißroboter 6\", \"symptom\": \"Lautes Klopfen\", \"messwert\": \"Lager Getriebe\", \"ursache\": \"defekt Defekt\", \"massnahme\": \"Nachgeschmiert\"}",
+  "{\"anlage\": \"Lackieranlage 9\", \"symptom\": \"Sinkt auf 98 Bar\", \"messwert\": \"98 Leckage\", \"ursache\": null, \"massnahme\": \"Hauptzylinder Abschied\"}",
+  "{\"anlage\": \"Härteofen 7\", \"symptom\": \"Schwindung Mahlgeräusch\", \"messwert\": null, \"ursache\": \"Bescheid Getriebe\", \"massnahme\": null}",
+  "{\"anlage\": \"Presse 8\", \"symptom\": \"Kühlwasser\", \"messwert\": \"44 °C\", \"ursache\": \"Kühlmittelpumpe\", \"massnahme\": \"Bewertung bestellt\"}",
+  "{\"anlage\": \"Drehmaschine 7\", \"symptom\": \"Übertragung\", \"messwert\": \"11.00\", \"ursache\": null, \"massnahme\": \"Drehmaschine informiert\"}",
+  "{\"anlage\": \"Schweißroboter 6\", \"symptom\": \"Rücklauf Kühlwasser\", \"messwert\": \"46 °C\", \"ursache\": \"Schichtleiter informiert\"}",
+  "{\"anlage\": \"Schweißroboter 7\", \"symptom\": \"Kühlwassung\", \"messwert\": \"51 °C\", \"ursache\": \"Kühler am Kühlwass\", \"massnahme\": \"Kühlwassende Lamellen\"}",
+  "{\"anlage\": \"Härteofen 7\", \"symptom\": \"Schwingungen\", \"messwert\": \"8,1 mm/s\", \"ursache\": \"Unwucht\", \"massnahme\": \"Abgeschaltet\"}",
+  "{\"anlage\": \"Lackieranlage 6\", \"symptom\": \"Vibrationen\", \"messwert\": \"7,3 mm/s\", \"ursache\": \"Unwucht an Spindel\", \"massnahme\": \"Ihre Unwuchte informiert\"}",
+  "{\"anlage\": \"Fräszentrum 6\", \"symptom\": \"Schwinggeschwindigkeit Schwingende\", \"messwert\": \"6,4 mm/s\", \"ursache\": \"Bescheid Meister Bescheid\", \"massnahme\": \"Schwinggeschwindigkeit\"}",
+  "{\"anlage\": \"Spritzgießmaschine 9\", \"symptom\": \"Schwingungen\", \"messwert\": \"7,0mm/s\", \"ursache\": \"Instandhaltung informiert\", \"öffentlicht\": \"Instandhaltung informiert\"}",
+  "{\"anlage\": \"Kompressor 6\", \"symptom\": \"Schwingungen\", \"messwert\": \"6,1 mm/s\", \"ursache\": \"Unwucht\", \"massnahme\": \"Bewundete bestellt\"}",
+  "{\"anlage\": \"Härteofen 9\", \"symptom\": \"Kühlwasser\", \"messwert\": \"47 °C\", \"ursache\": null, \"massnahme\": \"Bewertung bestellt\"}",
+  "{\"anlage\": \"Schweißroboter 7\", \"symptom\": \"Druckstandigkeit Hydraulische\", \"messwert\": \"170 bar\", \"ursache\": \"Instandhaltung\", \"massnahme\": \"Instandhaltung 170 anlage\"}",
+  "{\"anlage\": \"Fräszentrum 6\", \"symptom\": \"Hauptlager\", \"messwert\": \"79 °C\", \"ursache\": \"Lagerschaden\", \"massnahme\": \"Anlage aus\"}",
+  "{\"anlage\": \"Lackieranlage 7\", \"symptom\": \"Lagerchaltung\", \"messwert\": \"102°C\", \"ursache\": \"Lagerbestell\", \"massnahme\": \"Bewertung bestellt\"}",
+  "{\"anlage\": \"Schweißroboter 8\", \"symptom\": \"Druckabfall Hydraulik\", \"messwert\": \"161 bar\", \"ursache\": null, \"massnahme\": \"Druckabfall Hydraulik\"}",
+  "{\"anlage\": \"Lackieranlage 7\", \"symptom\": \"Stromaufnahme Motor\", \"messwert\": \"18 A\", \"ursache\": \"Motorwicklung\", \"massnahme\": \"Anlage abgeschädigt\"}",
+  "{\"anlage\": \"Kompressor 8\", \"symptom\": \"Position anlage\", \"messwert\": \"1,5 mm\", \"ursache\": \"Abweichung anlage\", \"massnahme\": \"Teil bestellt\"}",
+  "{\"anlage\": \"Anlage 8\", \"symptom\": \"Schwabteilung\", \"messwert\": \"27 A\", \"ursache\": null, \"massnahme\": null}",
+  "{\"anlage\": \"Schweißroboter 7\", \"symptom\": \"Stromaufnahme Motor 44 A\", \"messwert\": \"44 A\", \"ursache\": \"Wicklungsschaden informiert\"}",
+  "{\"anlage\": \"Presse 6\", \"symptom\": \"Überstandn\", \"messwert\": \"32\", \"ursache\": \"Überstandn\", \"massnahme\": \"Wirklichkeit informiert\"}",
+  "{\"anlage\": \"Förderband 9\", \"symptom\": \"Druckstand\", \"messwert\": null, \"ursache\": null, \"massnahme\": null}",
+  "{\"anlage\": \"Förderband 7\", \"symptom\": \"Druckstandigkeit Druckluft\", \"messwert\": \"3,6 bar\", \"ursache\": \"Druckstandigkeit Druckluft\", \"massnahme\": \"Druckstandigkeit Druckluft\"}",
+  "{\"anlage\": \"Drehmaschine 6\", \"symptom\": \"Druckstandigkeit\", \"messwert\": null, \"ursache\": null, \"massnahme\": null}",
+  "{\"anlage\": \"Lackieranlage 6\", \"symptom\": \"Kupplung\", \"messwert\": null, \"ursache\": null, \"massnahme\": null}",
+  "{\"anlage\": \"Lackieranlage 8\", \"symptom\": \"Drehzahl\", \"messwert\": null, \"ursache\": null, \"massnahme\": null}",
+  "{\"anlage\": \"Förderband 9\", \"symptom\": \"Getriebe\", \"messwert\": null, \"ursache\": null, \"massnahme\": null}",
+  "{\"anlage\": \"Fräszentrum 7\", \"symptom\": \"Schwabteilung\", \"messwert\": null, \"ursache\": null, \"massnahme\": null}",
+  "{\"anlage\": \"Förderband 6\", \"symptom\": \"Lagerwurzel\", \"messwert\": null, \"ursache\": null, \"massnahme\": null}",
+  "{\"anlage\": \"Förderband 9\", \"symptom\": \"Schwabjahr\", \"messwert\": null, \"ursache\": null, \"massnahme\": null}",
+  "{\"anlage\": \"Fräszentrum 9\", \"symptom\": \"Kühlkreislauf\", \"messwert\": null, \"ursache\": \"Pumpe Kühlkreislauf\", \"massnahme\": \"Nicht vermutelt\"}",
+  "{\"anlage\": \"8 Fremdkörper\", \"symptom\": \"Übertragung\", \"messwert\": null, \"ursache\": \"Fremscheider\", \"massnahme\": \"Anlage abgeschaltet\"}",
+  "{\"anlage\": \"Kühlwahlen\", \"symptom\": \"Anlage anlage\", \"messwert\": \"46°C\", \"ursache\": null, \"massnahme\": \"Anlage abgeschaltet\"}",
+  "{\"anlage\": \"Anlage 55\", \"symptom\": \"Schwabteilung\", \"messwert\": null, \"ursache\": null, \"massnahme\": null}",
+  "{\"anlage\": \"Nachtschicht\", \"symptom\": \"Schwabteilung\", \"messwert\": \"1,3 mm\", \"ursache\": null, \"massnahme\": \"Anlage angeschaltet\"}",
+  "{\"anlage\": \"K9-Antrieb\", \"symptom\": \"Überlast\", \"messwert\": null, \"ursache\": null, \"massnahme\": null}",
+  "{\"anlage\": \"SR 8\", \"symptom\": \"Druckstandigkeit Druckl.\", \"messwert\": \"3,7 Bar\", \"ursache\": \"Leitung zischt\", \"massnahme\": \"Abgeschmeirt\", \"anlage-anfang\": \"Druckstandigkeit Druckl. 3,7 Bar\"}",
+  "{\"anlage\": \"Frühschicth\", \"symptom\": \"Getriebe Lagerschaden\", \"messwert\": null, \"ursache\": null, \"massnahme\": null}",
+  "{\"anlage\": \"SR7\", \"symptom\": \"Kühlstand\", \"messwert\": \"49 °C\", \"ursache\": \"Kühler informiert\", \"massnahme\": \"Kühler informiert\"}",
+  "{\"anlage\": \"Ofen 9\", \"symptom\": \"Kampf\", \"messwert\": \"37 °C\", \"ursache\": \"verschmutzt\", \"massnahme\": \"Anlage abgeschaltet\"}",
+  "{\"anlage\": \"Anlage 8\", \"symptom\": \"Fremdkörper informiert\", \"messwert\": null, \"ursache\": null, \"massnahme\": null}"
+ ],
+ "ids": [
+  "eval-000",
+  "eval-001",
+  "eval-002",
+  "eval-003",
+  "eval-004",
+  "eval-005",
+  "eval-006",
+  "eval-007",
+  "eval-008",
+  "eval-009",
+  "eval-010",
+  "eval-011",
+  "eval-012",
+  "eval-013",
+  "eval-014",
+  "eval-015",
+  "eval-016",
+  "eval-017",
+  "eval-018",
+  "eval-019",
+  "eval-020",
+  "eval-021",
+  "eval-022",
+  "eval-023",
+  "eval-024",
+  "eval-025",
+  "eval-026",
+  "eval-027",
+  "eval-028",
+  "eval-029",
+  "eval-030",
+  "eval-031",
+  "eval-032",
+  "eval-033",
+  "eval-034",
+  "eval-035",
+  "eval-036",
+  "eval-037",
+  "eval-038",
+  "eval-039",
+  "eval-040",
+  "eval-041",
+  "eval-042",
+  "eval-043",
+  "eval-044",
+  "eval-045",
+  "eval-046",
+  "eval-047",
+  "eval-048",
+  "eval-049"
+ ]
+}

@@ -1,0 +1,31 @@
+{
+ "seed": 0,
+ "torch": "2.8.0+cu128",
+ "threads": 2,
+ "json_vorher": 0.0,
+ "json_nachher": 0.0,
+ "vorher": [
+  "I'm sorry for the confusion, but as a chatbot, I don't have the ability to translate or understand human languages. I'm designed to provide information and assistance in a clear and concise manner. I'm here to help with any questions or issues you may have regarding your health or wellness. If you have any specific questions or concerns, feel free to ask.",
+  "17 + 25 = 42.",
+  "In German:\n\nIn English:\n\nIn German:\n\nIn Spanish:\n\nIn Portuguese:\n\nIn Italian:\n\nIn French:\n\nIn Dutch:\n\nIn Swedish:\n\nIn Finnish:\n\nIn Polish:\n\nIn Romanian:\n\nIn Russian:\n\nIn Spanish:\n\nIn Italian:\n\nIn Portuguese:",
+  "Nenne drei Vorteile von Wartungsplänen.",
+  "Schreibe eine kurze, höfliche E-Mail, in der du einen Termin absagst.",
+  "The Hauptstadt of Frankreich is a historic city in the German state of Baden-Württemberg. It is located in the heart of the city, surrounded by the picturesque Rhine River and the picturesque town of Frankreich. The city is known for its rich history, rich culture, and beautiful architecture.",
+  "Auf ein Satz zusammen: Predictive Maintenance sagt Ausfälle voraus, bevor sie eintreten.",
+  "Formulier, das ist falsch.",
+  "Wie viele Minuten hat ein Tag?",
+  "Nenne zwei Unterschiede zwischen Stahl und Aluminium."
+ ],
+ "nachher": [
+  "\"The new policy, which was implemented in the last two days, has resulted in a significant reduction in the number of Drehmoments.\"",
+  "Yes, 17 + 25 = 42.",
+  "In German: The weather is still in the morning.",
+  "Nenne drei Vorteile von Wartungsplänen.",
+  "\"Schreibe eine kurze, höfliche E-Mail in der du nach dem Termin \"Düssigkeit\" abhängig.\"",
+  "\"Was ist die Hauptstadt von Frankreich?\"",
+  "Predicative Maintenance is detecting the following Ausfälle: \"Ausfälle Satze 1\".",
+  "Formulier: Formule falsches.",
+  "Wie viele Minuten hat ein Tag?",
+  "\"Two anti-tank guns clash between Aluminium and Stahl.\""
+ ]
+}

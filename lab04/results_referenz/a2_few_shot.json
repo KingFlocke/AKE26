@@ -1,0 +1,520 @@
+{
+ "seed": 0,
+ "torch": "2.8.0+cu128",
+ "threads": 2,
+ "quoten": {
+  "format_ok": 0.94,
+  "schema_ok": 0.78,
+  "anlage_ok": 0.48,
+  "messwert_ok": 0.36,
+  "komplett": 0.22,
+  "streng": 0.0
+ },
+ "n": 50,
+ "einzeln": [
+  {
+   "format_ok": false,
+   "schema_ok": false,
+   "anlage_ok": false,
+   "messwert_ok": false,
+   "komplett": false,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": true,
+   "anlage_ok": true,
+   "messwert_ok": true,
+   "komplett": true,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": true,
+   "anlage_ok": true,
+   "messwert_ok": false,
+   "komplett": false,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": true,
+   "anlage_ok": true,
+   "messwert_ok": false,
+   "komplett": false,
+   "streng": false
+  },
+  {
+   "format_ok": false,
+   "schema_ok": false,
+   "anlage_ok": false,
+   "messwert_ok": false,
+   "komplett": false,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": true,
+   "anlage_ok": true,
+   "messwert_ok": true,
+   "komplett": true,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": true,
+   "anlage_ok": true,
+   "messwert_ok": false,
+   "komplett": false,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": true,
+   "anlage_ok": true,
+   "messwert_ok": true,
+   "komplett": true,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": true,
+   "anlage_ok": true,
+   "messwert_ok": false,
+   "komplett": false,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": true,
+   "anlage_ok": true,
+   "messwert_ok": true,
+   "komplett": true,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": false,
+   "anlage_ok": false,
+   "messwert_ok": false,
+   "komplett": false,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": true,
+   "anlage_ok": true,
+   "messwert_ok": true,
+   "komplett": true,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": true,
+   "anlage_ok": true,
+   "messwert_ok": false,
+   "komplett": false,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": false,
+   "anlage_ok": false,
+   "messwert_ok": false,
+   "komplett": false,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": true,
+   "anlage_ok": true,
+   "messwert_ok": true,
+   "komplett": true,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": true,
+   "anlage_ok": false,
+   "messwert_ok": true,
+   "komplett": false,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": false,
+   "anlage_ok": false,
+   "messwert_ok": false,
+   "komplett": false,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": false,
+   "anlage_ok": false,
+   "messwert_ok": false,
+   "komplett": false,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": true,
+   "anlage_ok": false,
+   "messwert_ok": true,
+   "komplett": false,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": true,
+   "anlage_ok": false,
+   "messwert_ok": true,
+   "komplett": false,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": true,
+   "anlage_ok": false,
+   "messwert_ok": true,
+   "komplett": false,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": true,
+   "anlage_ok": false,
+   "messwert_ok": false,
+   "komplett": false,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": true,
+   "anlage_ok": true,
+   "messwert_ok": true,
+   "komplett": true,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": true,
+   "anlage_ok": true,
+   "messwert_ok": true,
+   "komplett": true,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": false,
+   "anlage_ok": false,
+   "messwert_ok": false,
+   "komplett": false,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": true,
+   "anlage_ok": true,
+   "messwert_ok": true,
+   "komplett": true,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": true,
+   "anlage_ok": true,
+   "messwert_ok": true,
+   "komplett": true,
+   "streng": false
+  },
+  {
+   "format_ok": false,
+   "schema_ok": false,
+   "anlage_ok": false,
+   "messwert_ok": false,
+   "komplett": false,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": true,
+   "anlage_ok": true,
+   "messwert_ok": true,
+   "komplett": true,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": true,
+   "anlage_ok": true,
+   "messwert_ok": false,
+   "komplett": false,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": true,
+   "anlage_ok": true,
+   "messwert_ok": false,
+   "komplett": false,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": false,
+   "anlage_ok": false,
+   "messwert_ok": false,
+   "komplett": false,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": true,
+   "anlage_ok": true,
+   "messwert_ok": false,
+   "komplett": false,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": true,
+   "anlage_ok": true,
+   "messwert_ok": false,
+   "komplett": false,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": true,
+   "anlage_ok": true,
+   "messwert_ok": false,
+   "komplett": false,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": true,
+   "anlage_ok": false,
+   "messwert_ok": false,
+   "komplett": false,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": true,
+   "anlage_ok": true,
+   "messwert_ok": false,
+   "komplett": false,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": true,
+   "anlage_ok": true,
+   "messwert_ok": false,
+   "komplett": false,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": true,
+   "anlage_ok": true,
+   "messwert_ok": false,
+   "komplett": false,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": true,
+   "anlage_ok": false,
+   "messwert_ok": false,
+   "komplett": false,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": true,
+   "anlage_ok": false,
+   "messwert_ok": false,
+   "komplett": false,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": true,
+   "anlage_ok": false,
+   "messwert_ok": true,
+   "komplett": false,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": true,
+   "anlage_ok": false,
+   "messwert_ok": false,
+   "komplett": false,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": true,
+   "anlage_ok": false,
+   "messwert_ok": false,
+   "komplett": false,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": false,
+   "anlage_ok": false,
+   "messwert_ok": false,
+   "komplett": false,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": true,
+   "anlage_ok": false,
+   "messwert_ok": false,
+   "komplett": false,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": true,
+   "anlage_ok": false,
+   "messwert_ok": false,
+   "komplett": false,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": true,
+   "anlage_ok": false,
+   "messwert_ok": true,
+   "komplett": false,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": true,
+   "anlage_ok": false,
+   "messwert_ok": true,
+   "komplett": false,
+   "streng": false
+  },
+  {
+   "format_ok": true,
+   "schema_ok": false,
+   "anlage_ok": false,
+   "messwert_ok": false,
+   "komplett": false,
+   "streng": false
+  }
+ ],
+ "ausgaben": [
+  "{\"anlage\": \"Kompressor 9\", \"symptom\": \"Übertemperatur Ölstand\", \"messwert\": \"12%\", \"ursache\": \"Übertemperatur Ölstand\", \"massnahme\": \"Übertemperatur Ölstand\", \"sl informiert\"}",
+  "{\"anlage\": \"Schweißroboter 9\", \"symptom\": \"Übertemperatur Schweißroboter\", \"messwert\": \"53 °C\", \"ursache\": \"Kühlwasser bei 53 °C\", \"massnahme\": \"Pumpe Kühlkreislauf vermutlich aus\"}",
+  "{\"anlage\": \"Förderband 6\", \"symptom\": \"Fürsten\", \"messwert\": \"73 °C\", \"ursache\": \"Maschine aus\", \"massnahme\": \"Nachgeschmiert\"}",
+  "{\"anlage\": \"Lackieranlage 7\", \"symptom\": \"Übertemperatur Lager\", \"messwert\": \"73 °C\", \"ursache\": \"Lagerschaden\", \"massnahme\": \"Nachgeschmiert\"}",
+  "{\"anlage\": \"Spätschicht\", \"symptom\": \"Übertemperatur Lager\", \"messwert\": \"17 %\", \"ursache\": \"Übertemperatur Lager\", \"massnahme\": \"Übertemperatur Lager\", \"vermutlich Leckage an der Ölwanne\"}",
+  "{\"anlage\": \"Förderband 7\", \"symptom\": \"Übertemperatur Lager\", \"messwert\": \"102 °C\", \"ursache\": \"Lagerschaden\", \"massnahme\": \"Nachgeschmiert\"}",
+  "{\"anlage\": \"Fräszentrum 8\", \"symptom\": \"Übertemperatur Motorwicklung\", \"messwert\": \"13 A. Motorwicklung\", \"ursache\": \"Aktuellen Motorwagen\", \"massnahme\": \"Verschieden\", \"antrieb\": \"13 A. Motorwicklung\"}",
+  "{\"anlage\": \"Kompressor 8\", \"symptom\": \"Übertemperatur Lager\", \"messwert\": \"91 °C\", \"ursache\": \"Lagerschaden\", \"massnahme\": \"Wahrscheinlich Schichtleiter informiert\"}",
+  "{\"anlage\": \"Schweißroboter 6\", \"symptom\": \"Übertemperatur Lager\", \"messwert\": \"73 °C\", \"ursache\": \"Lagerschaden\", \"massnahme\": \"Nachgeschmiert\"}",
+  "{\"anlage\": \"Lackieranlage 9\", \"symptom\": \"Übertemperatur Lager\", \"messwert\": \"98 bar\", \"ursache\": \"Hydraulikdruck sinkt auf 98 bar\", \"massnahme\": \"Vermutlich Leckage am Hauptzylinder\"}",
+  "{\"anlage\": \"Nachtschicht\", \"symptom\": \"Übertemperatur Mahlgeräusch\", \"messwert\": \"7 °C\", \"ursache\": \"Meister Bescheid gegeben\"}",
+  "{\"anlage\": \"Presse 8\", \"symptom\": \"Übertemperatur\", \"messwert\": \"44 °C\", \"ursache\": \"Kühlwasser bei 44 °C\", \"massnahme\": \"Nachgeschmiert\"}",
+  "{\"anlage\": \"Drehmaschine 7\", \"symptom\": \"Übertemperatur Lager\", \"messwert\": \"11%\", \"ursache\": \"Übertemperatur Lager\", \"massnahme\": \"Vom 11%\", \"informiert\": \"IH informiert\"}",
+  "{\"anlage\": \"Schweißroboter 6\", \"symptom\": \"Übertemperatur Schichtleiter informiert\", \"messwert\": \"46 °C\", \"ursache\": \"Schichtleiter informiert\"}",
+  "{\"anlage\": \"Schweißroboter 7\", \"symptom\": \"Übertemperatur Lager\", \"messwert\": \"51 °C\", \"ursache\": \"Lagerschaden\", \"massnahme\": \"Nachgeschmiert\"}",
+  "{\"anlage\": \"Nachtschicht\", \"symptom\": \"Übertemperatur\", \"messwert\": \"8,1 mm/s\", \"ursache\": \"Schwächereffen\", \"massnahme\": \"Verwaltung\", \"unwucht\": \"Abgeschaltet\"}",
+  "{\"anlage\": \"Lackieranlage 6\", \"symptom\": \"Übertemperatur Lager\", \"messwert\": \"7,3 mm/s\", \"ursache\": \"IH informiert\"}",
+  "{\"anlage\": \"Fräszentrum 6\", \"symptom\": \"Übertemperatur\", \"messwert\": \"6,4 mm/s\", \"ursache\": \"Schwächer Bescheid gegeben\"}",
+  "{\"anlage\": \"Nachtschicht\", \"symptom\": \"Übertemperatur Lager\", \"messwert\": \"7,0 mm/s\", \"ursache\": \"Schrauben am Fundament vermutlich locker\", \"massnahme\": \"Instandhaltung ist informiert\"}",
+  "{\"anlage\": \"Spätschicht\", \"symptom\": \"Übertemperatur Lager\", \"messwert\": \"6,1 mm/s\", \"ursache\": \"Schwingungen erhöht\", \"massnahme\": \"Vermutlich Unwucht\", \"bestellt\": \"6,1 mm/s\"}",
+  "{\"anlage\": \"Spätschicht\", \"symptom\": \"Übertemperatur Lager\", \"messwert\": \"47 °C\", \"ursache\": \"Lagerschaden\", \"massnahme\": \"Nachgeschmiert\"}",
+  "{\"anlage\": \"Spätschicht\", \"symptom\": \"Schweißroboter\", \"messwert\": \"7\", \"ursache\": \"Druckstellen\", \"massnahme\": \"Instandhaltung verständigt\"}",
+  "{\"anlage\": \"Fräszentrum 6\", \"symptom\": \"Übertemperatur Lager\", \"messwert\": \"79 °C\", \"ursache\": \"Hauptlager\", \"massnahme\": \"Während der Lagerstätigkeit 79 °C\"}",
+  "{\"anlage\": \"Lackieranlage 7\", \"symptom\": \"Übertemperatur Lager\", \"messwert\": \"102 °C\", \"ursache\": \"Lagerschaden\", \"massnahme\": \"Wahrscheinlich Lagerschaden\", \"bestellt\": \"102 °C\"}",
+  "{\"anlage\": \"Schweißroboter 8\", \"symptom\": \"Übertemperatur Hydraulikdruck\", \"messwert\": \"161 bar\", \"ursache\": \"Hydraulikdruck sinkt auf 161 bar\"}",
+  "{\"anlage\": \"Lackieranlage 7\", \"symptom\": \"Lackieranlage 7\", \"messwert\": \"18 A\", \"ursache\": \"Maschine aus\", \"massnahme\": \"Maschine aus\"}",
+  "{\"anlage\": \"Kompressor 8\", \"symptom\": \"Übertemperatur Position\", \"messwert\": \"1,5 mm\", \"ursache\": \"Abweichung 1,5 mm\", \"massnahme\": \"Teil ist bestellt\"}",
+  "{\"anlage\": \"Presse 8\", \"symptom\": \"Übertemperatur\", \"messwert\": \"27 A.\"], \"massnahme\": \"Nachgeschmiert\"}",
+  "{\"anlage\": \"Schweißroboter 7\", \"symptom\": \"Übertemperatur Schweißroboter\", \"messwert\": \"44 A\", \"ursache\": \"Stromaufnahme Motor 44 A\", \"massnahme\": \"Wicklungsschaden\", \"volker\": \"Wicklungsschaden\"}",
+  "{\"anlage\": \"Presse 6\", \"symptom\": \"Übertemperatur\", \"messwert\": \"32%\", \"ursache\": \"Übertemperatur\", \"massnahme\": \"Ihre informiert\"}",
+  "{\"anlage\": \"Förderband 9\", \"symptom\": \"Förderbereich\", \"messwert\": \"9\", \"ursache\": \"Druckbrücken\", \"massnahme\": \"Druckbrücken\"}",
+  "{\"anlage\": \"Förderband 7\", \"symptom\": \"Förderung\", \"messwert\": \"3,6 bar\", \"ursache\": \"Druckluft fällt auf 3,6 bar\"}",
+  "{\"anlage\": \"Drehmaschine 6\", \"symptom\": \"Übertemperatur Lager\", \"messwert\": \"73 °C\", \"ursache\": \"Lagerschaden\", \"massnahme\": \"Nachgeschmiert\"}",
+  "{\"anlage\": \"Lackieranlage 6\", \"symptom\": \"Übertemperatur Lager\", \"messwert\": \"73 °C\", \"ursache\": \"Lagervmtl.\", \"massnahme\": \"Nachgeschmiert\"}",
+  "{\"anlage\": \"Lackieranlage 8\", \"symptom\": \"Übertemperatur Lager\", \"messwert\": \"73 °C\", \"ursache\": \"Lagerschaden\", \"massnahme\": \"Drehzahl\"}",
+  "{\"anlage\": \"Spätschicht\", \"symptom\": \"Förderband 9\", \"messwert\": \"Geräusche\", \"ursache\": \"Getriebe macht\", \"massnahme\": \"Förderband 9\", \"geschmiert\": \"Förderband 9\"}",
+  "{\"anlage\": \"Fräszentrum 7\", \"symptom\": \"Übertemperatur Lager\", \"messwert\": \"73 °C\", \"ursache\": \"Lagerschaden\", \"massnahme\": \"Nachgeschmiert\"}",
+  "{\"anlage\": \"Förderband 6\", \"symptom\": \"Übertemperatur Lager\", \"messwert\": \"73 °C\", \"ursache\": \"Lagerwirtschaft\", \"massnahme\": \"Nachgeschmiert\"}",
+  "{\"anlage\": \"Förderband 9\", \"symptom\": \"Übertemperatur Maschine\", \"messwert\": \"73 °C\", \"ursache\": \"Maschineschafft\", \"massnahme\": \"Nachgeschmiert\"}",
+  "{\"anlage\": \"Spätschicht\", \"symptom\": \"Übertemperatur\", \"messwert\": \"9 °C\", \"ursache\": \"Kühlkreislauf\", \"massnahme\": \"Pumpe Kühlkreislauf\", \"vermutlich\": \"Vorwurf\"}",
+  "{\"anlage\": \"Nachtschicht\", \"symptom\": \"Übertemperatur Lager\", \"messwert\": \"73 °C\", \"ursache\": \"Lagerschaden\", \"massnahme\": \"Nachgeschmiert\"}",
+  "{\"anlage\": \"Pr. 7\", \"symptom\": \"Übertemperatur Lager\", \"messwert\": \"46 °C\", \"ursache\": \"Lagerschaden\", \"massnahme\": \"Nachgeschmiert\"}",
+  "{\"anlage\": \"Pr. 6 um 05:37\", \"symptom\": \"Übertemperatur Motorwicklung\", \"messwert\": \"55 A. Motorwicklung\", \"ursache\": \"Motorwicklung\", \"massnahme\": \"Vmtl. beschädigt\"}",
+  "{\"anlage\": \"DM7\", \"symptom\": \"Übertemperatur\", \"messwert\": \"13 mm\", \"ursache\": \"Lager\", \"massnahme\": \"Nachgeschmiert\"}",
+  "{\"anlage\": \"K 9\", \"symptom\": \"Überlast am Antrieb\", \"messwert\": \"73 °C\", \"ursache\": \"Nachgeschmiert\"}",
+  "{\"anlage\": \"SR 8\", \"symptom\": \"Übertemperatur\", \"messwert\": \"37 °C\", \"ursache\": \"Lager\", \"massnahme\": \"Nachgeschmiert\"}",
+  "{\"anlage\": \"SGM 8\", \"symptom\": \"Übertemperatur Lager\", \"messwert\": \"73 °C\", \"ursache\": \"Lagerschaden\", \"massnahme\": \"Nachgeschmiert\"}",
+  "{\"anlage\": \"SR7\", \"symptom\": \"Übertemperatur Lager\", \"messwert\": \"49 °C\", \"ursache\": \"Lagerschaden\", \"massnahme\": \"Nachgeschmiert\"}",
+  "{\"anlage\": \"Ofen 9\", \"symptom\": \"Übertemperatur Lager\", \"messwert\": \"37 °C\", \"ursache\": \"KW-Temp. 37 °C\", \"massnahme\": \"Anlage verschmutzt\"}",
+  "{\"anlage\": \"Ofen 8\", \"symptom\": \"Übertemperatur\", \"messwert\": \"73 °C\", \"ursache\": \"Vermutlich Fremdkörper eingeklemmt\"}"
+ ],
+ "ids": [
+  "eval-000",
+  "eval-001",
+  "eval-002",
+  "eval-003",
+  "eval-004",
+  "eval-005",
+  "eval-006",
+  "eval-007",
+  "eval-008",
+  "eval-009",
+  "eval-010",
+  "eval-011",
+  "eval-012",
+  "eval-013",
+  "eval-014",
+  "eval-015",
+  "eval-016",
+  "eval-017",
+  "eval-018",
+  "eval-019",
+  "eval-020",
+  "eval-021",
+  "eval-022",
+  "eval-023",
+  "eval-024",
+  "eval-025",
+  "eval-026",
+  "eval-027",
+  "eval-028",
+  "eval-029",
+  "eval-030",
+  "eval-031",
+  "eval-032",
+  "eval-033",
+  "eval-034",
+  "eval-035",
+  "eval-036",
+  "eval-037",
+  "eval-038",
+  "eval-039",
+  "eval-040",
+  "eval-041",
+  "eval-042",
+  "eval-043",
+  "eval-044",
+  "eval-045",
+  "eval-046",
+  "eval-047",
+  "eval-048",
+  "eval-049"
+ ]
+}

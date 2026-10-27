@@ -1,0 +1,47 @@
+{
+ "seed": 0,
+ "torch": "2.8.0+cu128",
+ "threads": 2,
+ "quoten": {
+  "zero": {
+   "format_ok": 0.0,
+   "schema_ok": 0.0,
+   "anlage_ok": 0.0,
+   "messwert_ok": 0.0,
+   "komplett": 0.0,
+   "streng": 0.0
+  },
+  "few": {
+   "format_ok": 0.94,
+   "schema_ok": 0.78,
+   "anlage_ok": 0.48,
+   "messwert_ok": 0.36,
+   "komplett": 0.22,
+   "streng": 0.0
+  },
+  "lora": {
+   "format_ok": 1.0,
+   "schema_ok": 0.88,
+   "anlage_ok": 0.66,
+   "messwert_ok": 0.74,
+   "komplett": 0.56,
+   "streng": 0.0
+  }
+ },
+ "vorzeichentest": {
+  "zero-shot": {
+   "besser": 28,
+   "schlechter": 0,
+   "p": 7.450580596923828e-09
+  },
+  "few-shot": {
+   "besser": 21,
+   "schlechter": 4,
+   "p": 0.0009105205535888672
+  }
+ },
+ "intervall_komplett_lora": [
+  0.4224085584056916,
+  0.6975914415943085
+ ]
+}

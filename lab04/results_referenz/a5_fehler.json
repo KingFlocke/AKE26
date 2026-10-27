@@ -1,0 +1,34 @@
+{
+ "seed": 0,
+ "torch": "2.8.0+cu128",
+ "threads": 2,
+ "quote_art": {
+  "typisch": 0.6,
+  "fehlend": 1.0,
+  "abk": 0.0
+ },
+ "fehler_ids": [
+  "eval-000",
+  "eval-006",
+  "eval-007",
+  "eval-008",
+  "eval-009",
+  "eval-012",
+  "eval-013",
+  "eval-018",
+  "eval-023",
+  "eval-027",
+  "eval-028",
+  "eval-029",
+  "eval-040",
+  "eval-041",
+  "eval-042",
+  "eval-043",
+  "eval-044",
+  "eval-045",
+  "eval-046",
+  "eval-047",
+  "eval-048",
+  "eval-049"
+ ]
+}
