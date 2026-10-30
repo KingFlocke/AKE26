@@ -1,0 +1,15 @@
+{
+  "_hinweis": "Referenzzeilen fuer Aufgabe 5 (Lab Woche 3). STAND: Platzhalter bis zum ersten Lauf des erweiterten Labs (Cluster). Parameterzahl und Gewichtsgroesse aus der Modellkonfiguration berechnet; Testgenauigkeit ist ein Literaturwert (anderes Protokoll: 25 000 Trainingstexte, 512 Token, volles IMDB-Testset); Trainingszeit fehlt noch.",
+  "modelle": {
+    "BERT-base-FT": {
+      "hub_id": "bert-base-uncased",
+      "trainierbare_parameter": 109483778,
+      "gewichte_mb_fp32": 437.9,
+      "test_acc": 0.946,
+      "test_acc_quelle": "Sun, Qiu, Xu, Huang (2019): How to Fine-Tune BERT for Text Classification? CCL 2019, Tab. IMDb, BERT-base ohne Weiter-Pretraining (Fehler 5,40 %)",
+      "trainingszeit_s": null,
+      "trainingszeit_quelle": "erweitertes Lab, noch nicht gelaufen",
+      "protokoll": "25 000 Train / 25 000 Test, max_length 512, 3-4 Epochen, GPU"
+    }
+  }
+}
