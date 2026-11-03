@@ -1,0 +1,18 @@
+{
+ "ergebnisse": [
+  {
+   "Modell": "LightGBM",
+   "MAE": 488,
+   "RMSE": 616,
+   "MAPE": 2.4,
+   "MASE": 0.459
+  },
+  {
+   "Modell": "LSTM",
+   "MAE": 745,
+   "RMSE": 953,
+   "MAPE": 3.57,
+   "MASE": 0.701
+  }
+ ]
+}

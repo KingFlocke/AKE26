@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Isolation Forest Schritte</title>
+<style>
+  :root{--navy:#1F3864;--or:#E87722;--gr:#8A8A8A;--lg:#D9DEE7;--tx:#222;--lb:#EAF0F8;--pt:#C3C8D4;--pts:#8E95AB}
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%;background:#fff;overflow:hidden;font-family:Arial,"Liberation Sans",Helvetica,sans-serif;color:var(--tx)}
+  #wrap{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}
+  #stage{width:1600px;height:800px;position:relative;flex:none;transform-origin:center center}
+  nav{position:absolute;left:40px;top:14px;display:flex;gap:6px}
+  nav button{font:inherit;font-size:17px;border:0;background:none;color:var(--gr);display:flex;align-items:center;gap:8px;padding:7px 14px 7px 8px;border-radius:22px;cursor:pointer}
+  nav button .n{width:28px;height:28px;border-radius:50%;background:var(--lg);color:#fff;font-weight:700;display:grid;place-items:center;font-size:15px}
+  nav button.done .n{background:var(--navy)}
+  nav button.on{color:var(--navy);font-weight:700;background:var(--lb)}
+  nav button.on .n{background:var(--or)}
+  #left{position:absolute;left:40px;top:68px;width:660px}
+  #plot{width:660px;height:640px;display:block;user-select:none;-webkit-user-select:none}
+  .pick{display:flex;align-items:center;gap:10px;font-size:16px;color:var(--gr);padding-left:60px;margin-top:4px}
+  .seg{display:inline-flex;border:1.5px solid var(--lg);border-radius:6px;overflow:hidden}
+  .seg button{font:inherit;font-size:16px;font-weight:700;border:0;background:#fff;color:var(--navy);padding:6px 14px;cursor:pointer}
+  .seg button+button{border-left:1.5px solid var(--lg)}
+  .seg button.on{background:var(--navy);color:#fff}
+  #panel{position:absolute;left:760px;top:78px;width:800px}
+  #panel h2{margin:0 0 14px;font-size:32px;color:var(--navy)}
+  #panel p,#panel li{font-size:21px;line-height:1.45;margin:0 0 12px}
+  #panel ol{margin:0 0 12px;padding-left:26px}
+  #panel b{color:var(--navy)}
+  .hint{color:var(--gr);font-size:17px!important}
+  .btns{display:flex;gap:12px;margin:18px 0}
+  .btn{font:inherit;font-size:18px;font-weight:700;padding:10px 18px;border-radius:6px;border:2px solid var(--navy);background:#fff;color:var(--navy);cursor:pointer}
+  .btn:hover{background:var(--lb)}
+  .btn.primary{background:var(--or);border-color:var(--or);color:#fff}
+  .btn.on{background:var(--navy);border-color:var(--navy);color:#fff}
+  .btn:disabled{opacity:.35;cursor:default;background:#fff;color:var(--navy);border-color:var(--navy)}
+  .info{background:var(--lb);padding:18px 24px;font-size:21px;line-height:1.6}
+  .big{font-size:48px;font-weight:700;color:var(--navy);line-height:1.1}
+  .o{color:var(--or)!important}
+  .dim{color:var(--gr);font-size:17px}
+  .formula{font-family:"Cambria Math","Latin Modern Math","Times New Roman",serif;font-style:italic;font-size:44px;margin:4px 0 16px}
+  .formula sup{font-size:28px}
+  .info sup{font-size:15px}
+  .mono{font-family:Menlo,Consolas,monospace;font-size:17px;background:#F3F4F7;padding:12px 16px;margin-top:14px;color:#333}
+  .ctl{display:flex;align-items:center;gap:16px;font-size:21px;margin:8px 0 6px}
+  .ctl input{width:320px;accent-color:#E87722}
+  #contv{font-weight:700;color:var(--navy);min-width:64px}
+  #foot{position:absolute;right:40px;bottom:12px;font-size:14px;color:var(--gr)}
+  svg text{font-family:Arial,"Liberation Sans",Helvetica,sans-serif}
+  .axis{stroke:#555;stroke-width:1.3;fill:none}
+  .axl{font-size:17px;fill:var(--gr);font-style:italic}
+  .cut{fill:none;stroke:var(--navy);stroke-width:2.2}
+  .cut.new{stroke-dasharray:1;stroke-dashoffset:1;animation:draw .5s ease-out forwards}
+  @keyframes draw{to{stroke-dashoffset:0}}
+  .cutlbl{font-size:14px;fill:var(--navy);font-weight:700}
+  .region{fill:var(--lb)}
+  .rng{stroke:var(--or);stroke-width:2.5;fill:none}
+  .hit{fill:transparent;cursor:pointer}
+  .tlbl{font-size:16px;fill:var(--navy);font-weight:700}
+</style>
+</head>
+<body>
+<div id="wrap"><div id="stage">
+  <nav id="nav"></nav>
+  <div id="left">
+    <svg id="plot" viewBox="0 0 660 640" aria-label="Streudiagramm mit Zufallsschnitten"></svg>
+    <div class="pick">Zielpunkt x: <span class="seg"><button data-pick="norm">Normaler Punkt</button><button data-pick="out">Ausreißer</button></span> oder Punkt anklicken</div>
+  </div>
+  <div id="panel"></div>
+  <div id="foot">← → Schritt wechseln · Leertaste = Aktion</div>
+</div></div>
+
+<script>
+const NAVY='#1F3864',OR='#E87722',PT='#C3C8D4',PTS='#8E95AB',LB='#EAF0F8',GR='#8A8A8A',NT=200;
+
+/* ---------- Daten (fester Seed, damit die Folie immer gleich aussieht) ---------- */
+function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+const rd=mulberry32(11);
+function gauss(){let u=0;while(u===0)u=rd();const v=rd();return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v)}
+const P=[];
+while(P.length<59){const x=.40+.12*gauss(),y=.46+.13*gauss();if(x>.05&&x<.76&&y>.05&&y<.9)P.push([x,y])}
+P.push([.88,.84]);
+const n=P.length,OUT=n-1;
+let NORM=0;{let best=1e9;P.forEach((p,i)=>{if(i===OUT)return;const d=(p[0]-.41)**2+(p[1]-.46)**2;if(d<best){best=d;NORM=i}})}
+
+/* ---------- Isolation-Pfad eines Punktes in einem Zufallsbaum ---------- */
+function isolate(idx,rnd=Math.random){
+  let pts=[...Array(n).keys()],reg={x0:0,x1:1,y0:0,y1:1};const cuts=[];let guard=0;
+  while(pts.length>1&&guard++<1000){
+    const q=rnd()<.5?0:1;let mn=Infinity,mx=-Infinity;
+    for(const i of pts){const v=P[i][q];if(v<mn)mn=v;if(v>mx)mx=v}
+    if(mx-mn<1e-12)continue;
+    const p=mn+rnd()*(mx-mn),before={...reg},left=P[idx][q]<p;
+    pts=pts.filter(i=>(P[i][q]<p)===left);
+    if(q===0){left?reg.x1=p:reg.x0=p}else{left?reg.y1=p:reg.y0=p}
+    cuts.push({q,p,mn,mx,before,after:{...reg},pts:pts.slice()});
+  }
+  return cuts;
+}
+const EUL=0.5772156649;
+const cN=m=>m>2?2*(Math.log(m-1)+EUL)-2*(m-1)/m:(m===2?1:0);
+const CN=cN(n);
+const seedOf=i=>1000+i*7919;
+const SIM=P.map((_,i)=>{const r=mulberry32(seedOf(i)),a=[];for(let t=0;t<NT;t++)a.push(isolate(i,r).length);return a});
+const EH=SIM.map(a=>a.reduce((s,v)=>s+v,0)/a.length);
+const S=EH.map(e=>Math.pow(2,-e/CN));
+
+/* ---------- Zustand ---------- */
+const STEPS=['Daten','Ein Schnitt','Isolieren','Viele Bäume','Score','Schwelle'];
+let step=0,target=NORM,fresh=false;
+let cut1=null;                         // Schritt 2
+let path=null,shown=0,treeLog=[],logged=false,allTimer=null; // Schritt 3
+let k4=0,curTree=null,anim=null,rng4=null;                   // Schritt 4
+let cont=0.02,autoMode=false;                                // Schritt 6
+
+const fmt=(v,d=2)=>v.toLocaleString('de-DE',{minimumFractionDigits:d,maximumFractionDigits:d});
+const role=i=>i===OUT?'Ausreißer':(i===NORM?'normaler Punkt':'Punkt #'+(i+1));
+const $=id=>document.getElementById(id);
+
+/* ---------- Plot ---------- */
+const L=60,T=10,W=580,H=580;
+const X=v=>L+v*W,Y=v=>T+(1-v)*H;
+function lerp(a,b,t){const A=a.match(/\w\w/g).map(h=>parseInt(h,16)),B=b.match(/\w\w/g).map(h=>parseInt(h,16));return'rgb('+A.map((v,k)=>Math.round(v+(B[k]-v)*t)).join(',')+')'}
+const sT=s=>Math.max(0,Math.min(1,(s-.45)/.3));
+function threshold(){if(autoMode)return .5;const a=[...S].sort((x,y)=>x-y);if(cont<=0)return a[n-1];const pos=(n-1)*(1-cont),lo=Math.floor(pos),f=pos-lo;return a[lo]+(a[Math.min(lo+1,n-1)]-a[lo])*f}
+
+function plotSVG(){
+  let g='',cuts=[],region=null,inSet=null,newIdx=-1,labels=true,extra='';
+  if(step===1&&cut1){cuts=[cut1];region=cut1.after;inSet=new Set(cut1.pts);newIdx=fresh?0:-1;labels=false;extra=rangeMarker(cut1)}
+  if(step===2&&path&&shown>0){cuts=path.slice(0,shown);region=path[shown-1].after;inSet=new Set(path[shown-1].pts);newIdx=fresh?shown-1:-1}
+  if(step===3&&curTree&&curTree.length){cuts=curTree;region=curTree.at(-1).after;labels=false}
+  if(region)g+=`<rect class="region" x="${X(region.x0)}" y="${Y(region.y1)}" width="${(region.x1-region.x0)*W}" height="${(region.y1-region.y0)*H}"/>`;
+  g+=`<path class="axis" d="M${L} ${T}V${T+H}H${L+W}"/>`;
+  g+=`<text class="axl" x="${L+W}" y="${T+H+38}" text-anchor="end">Merkmal x₁</text>`;
+  g+=`<text class="axl" transform="translate(22 ${T}) rotate(-90)" text-anchor="end">Merkmal x₂</text>`;
+  cuts.forEach((c,k)=>{const b=c.before;let d,lx,ly;
+    if(c.q===0){d=`M${X(c.p)} ${Y(b.y0)}V${Y(b.y1)}`;lx=X(c.p)+4;ly=Y(b.y0)-5}
+    else{d=`M${X(b.x0)} ${Y(c.p)}H${X(b.x1)}`;lx=X(b.x0)+5;ly=Y(c.p)-5}
+    g+=`<path class="cut${k===newIdx?' new':''}" pathLength="1" d="${d}"${step===3?' opacity=".75"':''}/>`;
+    if(labels)g+=`<text class="cutlbl" x="${lx}" y="${ly}">${k+1}</text>`});
+  g+=extra;
+  const thr=step===5?threshold():null;
+  P.forEach((p,i)=>{
+    const isO=i===OUT;let fill=isO?OR:PT,stroke=isO?OR:PTS,r=isO?7:4.5,op=1;
+    if(step===4){const t=sT(S[i]);fill=lerp('C3C8D4','E87722',t);stroke=t>.5?'#B85A12':PTS;r=4.5+3.5*t}
+    if(step===5){const f=S[i]>thr;fill=f?OR:PT;stroke=f?NAVY:PTS;r=f?7:4.5}
+    if(inSet&&!inSet.has(i))op=.22;
+    g+=`<circle cx="${X(p[0])}" cy="${Y(p[1])}" r="${r}" fill="${fill}" stroke="${stroke}" stroke-width="1.2" opacity="${op}"/>`});
+  const tp=P[target];
+  g+=`<circle cx="${X(tp[0])}" cy="${Y(tp[1])}" r="11" fill="none" stroke="${NAVY}" stroke-width="3"/>`;
+  g+=`<text class="tlbl" x="${X(tp[0])+(tp[0]>.8?-16:15)}" y="${Y(tp[1])-13}" text-anchor="${tp[0]>.8?'end':'start'}">x</text>`;
+  if(step===3&&k4>0)g+=`<text x="${L+12}" y="${T+26}" font-size="17" fill="${NAVY}" font-weight="700">Baum ${k4} / ${NT} · h(x) = ${curTree?curTree.length:''}</text>`;
+  P.forEach((p,i)=>{g+=`<circle class="hit" data-i="${i}" cx="${X(p[0])}" cy="${Y(p[1])}" r="11"><title>${role(i)}${step>=4?' · s = '+fmt(S[i]):''}</title></circle>`});
+  return g;
+}
+function rangeMarker(c){
+  if(c.q===0){const y=T+H+14;return `<path class="rng" d="M${X(c.mn)} ${y-6}v12M${X(c.mn)} ${y}H${X(c.mx)}M${X(c.mx)} ${y-6}v12"/><path d="M${X(c.p)} ${y+3}l-7 12h14z" fill="${NAVY}"/>`}
+  const x=L-14;return `<path class="rng" d="M${x-6} ${Y(c.mn)}h12M${x} ${Y(c.mn)}V${Y(c.mx)}M${x-6} ${Y(c.mx)}h12"/><path d="M${x-3} ${Y(c.p)}l-12 -7v14z" fill="${NAVY}"/>`;
+}
+
+/* ---------- Histogramm (Schritt 4) ---------- */
+function pair(){return{o:OUT,m:target===OUT?NORM:target}}
+function histSVG(){
+  const {o,m}=pair(),w=800,h=260,l=46,r=14,t=58,b=40,pw=w-l-r,ph=h-t-b;
+  const maxH=Math.min(24,Math.max(...SIM[o],...SIM[m]));const bw=pw/maxH;
+  const cnt=(i,k)=>{const c=Array(maxH+1).fill(0);for(let j=0;j<k;j++)c[Math.min(maxH,SIM[i][j])]++;return c};
+  const full=[cnt(o,NT),cnt(m,NT)],ymax=Math.max(...full[0],...full[1]);
+  const cur=[cnt(o,k4),cnt(m,k4)];let g='';
+  g+=`<path class="axis" d="M${l} ${t}V${t+ph}H${l+pw}"/>`;
+  for(let hh=1;hh<=maxH;hh++){const x0=l+(hh-1)*bw;
+    [[0,OR],[1,NAVY]].forEach(([s,col])=>{const v=cur[s][hh],bh=v/ymax*ph;if(v)g+=`<rect x="${x0+2+s*(bw/2-1)}" y="${t+ph-bh}" width="${bw/2-3}" height="${bh}" fill="${col}"/>`});
+    if(maxH<=16||hh%2===1)g+=`<text x="${x0+bw/2}" y="${t+ph+20}" font-size="14" fill="${GR}" text-anchor="middle">${hh}</text>`}
+  g+=`<text x="${l+pw}" y="${h-2}" font-size="15" fill="${GR}" text-anchor="end" font-style="italic">h(x) = Schnitte bis isoliert</text>`;
+  g+=`<text x="${l-26}" y="${t+ph/2}" font-size="15" fill="${GR}" font-style="italic" text-anchor="middle" transform="rotate(-90 ${l-26} ${t+ph/2})">Anzahl Bäume</text>`;
+  if(k4>0)[[o,OR,0],[m,NAVY,1]].forEach(([i,col,s])=>{const e=SIM[i].slice(0,k4).reduce((a,v)=>a+v,0)/k4,x=l+(e-.5)*bw;
+    g+=`<path d="M${x} ${t-24}V${t+ph}" stroke="${col}" stroke-width="2.5" stroke-dasharray="6 4"/><text x="${x+(s?6:-6)}" y="${t-10}" font-size="16" font-weight="700" fill="${col}" text-anchor="${s?'start':'end'}">E = ${fmt(e,1)}</text>`});
+  const lab=m===NORM?'normaler Punkt':'gewählter Punkt';
+  g+=`<rect x="${l}" y="2" width="14" height="14" fill="${OR}"/><text x="${l+20}" y="14" font-size="15">Ausreißer</text>`;
+  g+=`<rect x="${l+130}" y="2" width="14" height="14" fill="${NAVY}"/><text x="${l+150}" y="14" font-size="15">${lab}</text>`;
+  return g;
+}
+
+/* ---------- Score-Streifen (Schritt 5/6) ---------- */
+function stripSVG(thr){
+  const w=800,h=128,l=24,r=24,y=66,lo=Math.min(.4,Math.floor(Math.min(...S)*20)/20),hi=Math.max(.8,Math.ceil(Math.max(...S)*20)/20);
+  const sx=v=>l+(v-lo)/(hi-lo)*(w-l-r);let g=`<path d="M${l} ${y}H${w-r}" stroke="#555" stroke-width="1.3"/>`;
+  for(let v=Math.ceil(lo*10)/10;v<=hi+1e-9;v+=.1)g+=`<path d="M${sx(v)} ${y}v5" stroke="#555"/><text x="${sx(v)}" y="${y+24}" font-size="14" fill="${GR}" text-anchor="middle">${fmt(v,1)}</text>`;
+  g+=`<path d="M${sx(.5)} ${y-46}V${y}" stroke="${GR}" stroke-dasharray="3 4"/><text x="${sx(.5)+5}" y="${y-36}" font-size="14" fill="${GR}">0,5</text>`;
+  S.forEach((s,i)=>{if(i===target)return;const f=thr!=null&&s>thr;const col=thr!=null?(f?OR:PTS):lerp('8E95AB','E87722',sT(s));g+=`<path d="M${sx(s)} ${y-22}V${y}" stroke="${col}" stroke-width="2" opacity=".85"/>`});
+  g+=`<path d="M${sx(S[target])} ${y-34}V${y}" stroke="${NAVY}" stroke-width="4"/><text x="${sx(S[target])}" y="${y-40}" font-size="15" font-weight="700" fill="${NAVY}" text-anchor="middle">x</text>`;
+  if(thr!=null){const x=sx(Math.min(hi,thr));g+=`<path d="M${x} ${y-50}V${y+8}" stroke="${OR}" stroke-width="2.5" stroke-dasharray="6 4"/><text x="${x+6}" y="${y-48}" font-size="15" font-weight="700" fill="${OR}">s* = ${fmt(thr)}</text>`}
+  g+=`<text x="${w-r}" y="${h-2}" font-size="15" fill="${GR}" text-anchor="end" font-style="italic">Score s – je weiter rechts, desto auffälliger</text>`;
+  return g;
+}
+
+/* ---------- Panels ---------- */
+const PANELS=[
+`<h2>Daten: zwei Merkmale, ein Ausreißer</h2>
+<p>60 Messpunkte mit den Merkmalen x₁ und x₂ – <b>ohne Labels</b>. Ein Punkt liegt abseits.</p>
+<p>Idee: Statt „normal“ zu modellieren, fragt der Isolation Forest: <b>Wie viele Zufallsschnitte braucht es, bis ein Punkt allein ist?</b> Seltene, andersartige Punkte sind schnell isoliert.</p>
+<div class="info" id="info"></div>
+<p class="hint" style="margin-top:14px">Zielpunkt x unten umschalten oder direkt im Plot anklicken – er wird durch alle Schritte verfolgt.</p>`,
+`<h2>Ein Zufallsschnitt</h2>
+<p>Jeder Schnitt besteht aus zwei Zufallsentscheidungen:</p>
+<ol><li><b>Merkmal q</b> zufällig wählen (x₁ oder x₂)</li><li><b>Schnittwert p</b> gleichverteilt zwischen Min und Max von q <span class="o">(oranger Bereich)</span></li></ol>
+<p>Weiter geht es nur mit der Seite, auf der x liegt (hellblau).</p>
+<div class="btns"><button class="btn primary" data-act="roll">Neu würfeln</button></div>
+<div class="info" id="info"></div>`,
+`<h2>Schneiden, bis x allein ist</h2>
+<p>Schritt 2 wird in der verbleibenden Partition wiederholt. <b>h(x)</b> = Anzahl Schnitte, bis x allein ist – die Pfadlänge im Baum.</p>
+<div class="btns"><button class="btn primary" data-act="next" id="bNext">Nächster Schnitt</button><button class="btn" data-act="all" id="bAll">Bis zur Isolation</button><button class="btn" data-act="newtree">Neuer Baum</button></div>
+<div class="info" id="info"></div>
+<p class="hint" style="margin-top:14px">Tipp: denselben Ablauf mit dem Ausreißer und mit dem normalen Punkt zeigen.</p>`,
+`<h2>Viele Bäume → Mittelwert E[h(x)]</h2>
+<p>Ein einzelner Baum ist Zufall – h(x) streut von Baum zu Baum. Über ${NT} Bäume gemittelt wird die Pfadlänge stabil: <b>Ausreißer links, normale Punkte rechts.</b></p>
+<div class="btns"><button class="btn primary" data-act="forest" id="bForest">${NT} Bäume wachsen lassen</button><button class="btn" data-act="reset4">Zurücksetzen</button></div>
+<svg id="hist" viewBox="0 0 800 260" width="800" height="260"></svg>
+<div class="info" id="info" style="margin-top:10px"></div>`,
+`<h2>Normieren → Anomalie-Score</h2>
+<div class="formula">s(x, n) = 2<sup>− E[h(x)] / c(n)</sup></div>
+<p>c(n) ist die mittlere Pfadlänge bei n Punkten – sie macht den Score unabhängig von der Datenmenge.</p>
+<div class="info" id="info"></div>
+<svg id="strip" viewBox="0 0 800 128" width="800" height="128" style="margin-top:14px"></svg>
+<p class="hint">s ≈ 1: Anomalie · s &lt; 0,5: normal · Punkt im Plot anklicken</p>`,
+`<h2>contamination setzt nur die Schwelle</h2>
+<p>Die Scores bleiben unverändert. <b>contamination</b> = erwarteter Anomalie-Anteil legt nur fest, ab welchem s ein Punkt als Anomalie markiert wird.</p>
+<div class="ctl">contamination <input type="range" id="cont" min="0" max="0.2" step="0.01"> <span id="contv"></span><button class="btn" data-act="auto" id="bAuto">auto</button></div>
+<svg id="strip" viewBox="0 0 800 128" width="800" height="128" style="margin-top:6px"></svg>
+<div class="info" id="info"></div>
+<div class="mono" id="code"></div>`
+];
+
+function infoHTML(){
+  const tp=P[target];
+  if(step===0)return `<b>Zielpunkt x:</b> ${role(target)}<br><b>Koordinaten:</b> x₁ = ${fmt(tp[0])} · x₂ = ${fmt(tp[1])}<br><b>n</b> = ${n} Punkte · 2 Merkmale`;
+  if(step===1){const c=cut1;return `<b>Merkmal q:</b> x${c.q?'₂':'₁'}<br><b>Bereich:</b> min ${fmt(c.mn)} … max ${fmt(c.mx)}<br><b>Schnittwert p:</b> ${fmt(c.p)}<br><b>Auf der Seite von x:</b> ${c.pts.length} von ${n} Punkten${c.pts.length===1?' → <span class="o"><b class="o">schon isoliert!</b></span>':''}`}
+  if(step===2){const done=path&&shown===path.length;const rem=shown?path[shown-1].pts.length:n;
+    return `<div style="display:flex;align-items:baseline;gap:22px"><span class="big">h(x) = ${shown}</span><span>${done?'<b class="o">x ist isoliert ✔</b>':`noch ${rem} Punkte in der Partition`}</span></div>
+    <div style="margin-top:8px"><b>Bisherige Bäume für x:</b> ${treeLog.length?treeLog.join(' · '):'–'}</div>`}
+  if(step===3){const {o,m}=pair();const e=i=>k4?fmt(SIM[i].slice(0,k4).reduce((a,v)=>a+v,0)/k4):'–';
+    return `<b>Bäume:</b> ${k4} / ${NT}<br><span class="o"><b class="o">E[h]</b> Ausreißer = ${e(o)}</span> &nbsp;·&nbsp; <b>E[h]</b> ${m===NORM?'normaler Punkt':'gewählter Punkt'} = ${e(m)}`}
+  if(step===4){const H1=Math.log(n-1)+EUL;return `<b>n</b> = <b>${n}</b> <span class="dim">(Punkte, aus denen jeder Baum gebaut wird)</span><br>
+    <b>c(n)</b> = 2·H(n−1) − 2(n−1)/n<br>
+    <span style="padding-left:58px"></span>= 2·H(${n-1}) − 2·${n-1}/${n} = 2·${fmt(H1)} − ${fmt(2*(n-1)/n)} = <b>${fmt(CN)}</b> <span class="dim">(H(i) ≈ ln i + 0,5772)</span><br>
+    <b>E[h(x)]</b> = <b>${fmt(EH[target])}</b> <span class="dim">(${role(target)}, Mittel über ${NT} Bäume)</span><br>
+    <b>s(x, ${n})</b> = 2<sup>−${fmt(EH[target])} / ${fmt(CN)}</sup> = <b class="o" style="font-size:28px">${fmt(S[target])}</b>`}
+  if(step===5){const thr=threshold(),k=S.filter(s=>s>thr).length;
+    return `<b>Schwelle s*</b> = ${fmt(thr)} &nbsp;·&nbsp; <b>markiert:</b> <b class="o">${k}</b> von ${n} Punkten<br><b>x</b> (${role(target)}, s = ${fmt(S[target])}): ${S[target]>thr?'<b class="o">Anomalie (−1)</b>':'normal (+1)'}`}
+}
+
+/* ---------- Rendering ---------- */
+function render(){
+  $('nav').querySelectorAll('button').forEach((b,i)=>{b.classList.toggle('on',i===step);b.classList.toggle('done',i<step)});
+  document.querySelectorAll('[data-pick]').forEach(b=>b.classList.toggle('on',(b.dataset.pick==='out'&&target===OUT)||(b.dataset.pick==='norm'&&target===NORM)));
+  $('plot').innerHTML=plotSVG();
+  const info=$('info');if(info)info.innerHTML=infoHTML();
+  if(step===2){const done=path&&shown===path.length;$('bNext').disabled=done;$('bAll').disabled=done||!!allTimer}
+  if(step===3){$('hist').innerHTML=histSVG();$('bForest').disabled=!!anim}
+  if(step===4)$('strip').innerHTML=stripSVG(null);
+  if(step===5){const thr=threshold();$('strip').innerHTML=stripSVG(thr);$('contv').textContent=autoMode?'–':Math.round(cont*100)+' %';
+    $('cont').value=cont;$('cont').style.opacity=autoMode?.4:1;$('bAuto').classList.toggle('on',autoMode);
+    $('code').textContent=`IsolationForest(n_estimators=${NT}, contamination=${autoMode?"'auto'":cont.toFixed(2)}).fit_predict(X)`}
+  fresh=false;
+}
+function stopAll(){if(anim){cancelAnimationFrame(anim);anim=null}if(allTimer){clearTimeout(allTimer);allTimer=null}}
+function setStep(s){
+  s=Math.max(0,Math.min(STEPS.length-1,s));stopAll();step=s;$('panel').innerHTML=PANELS[s];
+  if(s===1&&!cut1)roll();
+  if(s===2&&!path)newTree();
+  if(s===5)$('cont').addEventListener('input',e=>{cont=+e.target.value;autoMode=false;render()});
+  render();
+}
+function setTarget(i){stopAll();target=i;cut1=null;path=null;shown=0;treeLog=[];k4=0;curTree=null;
+  if(step===1)roll();if(step===2)newTree();render()}
+function roll(){cut1=isolate(target)[0];fresh=true}
+function newTree(){path=isolate(target);shown=0;logged=false}
+function nextCut(){if(!path||shown>=path.length)return;shown++;fresh=true;
+  if(shown===path.length&&!logged){treeLog.push(shown);if(treeLog.length>12)treeLog.shift();logged=true}render()}
+function runAll(){if(allTimer||!path||shown>=path.length)return;const go=()=>{nextCut();allTimer=shown<path.length?setTimeout(go,420):null;render()};go()}
+function runForest(){
+  if(anim)return;if(k4>=NT){k4=0;curTree=null}
+  rng4=mulberry32(seedOf(target));for(let t=0;t<k4;t++)isolate(target,rng4);
+  let f=0;const tick=()=>{f++;
+    const slow=k4<6;if(!slow||f%22===1){const m=slow?1:2;for(let j=0;j<m&&k4<NT;j++){curTree=isolate(target,rng4);k4++}render()}
+    anim=k4<NT?requestAnimationFrame(tick):null;if(!anim)render()};
+  anim=requestAnimationFrame(tick);render();
+}
+const ACT={roll:()=>{roll();render()},next:()=>{stopAll();nextCut()},all:runAll,newtree:()=>{stopAll();newTree();render()},
+  forest:runForest,reset4:()=>{stopAll();k4=0;curTree=null;render()},auto:()=>{autoMode=!autoMode;render()}};
+const PRIMARY=['','roll','next','forest','',''];
+
+/* ---------- Events ---------- */
+$('nav').innerHTML=STEPS.map((s,i)=>`<button data-step="${i}"><span class="n">${i+1}</span>${s}</button>`).join('');
+document.addEventListener('click',e=>{
+  const st=e.target.closest('[data-step]');if(st)return setStep(+st.dataset.step);
+  const a=e.target.closest('[data-act]');if(a&&ACT[a.dataset.act])return ACT[a.dataset.act]();
+  const pk=e.target.closest('[data-pick]');if(pk)return setTarget(pk.dataset.pick==='out'?OUT:NORM);
+  const h=e.target.closest('[data-i]');if(h)return setTarget(+h.dataset.i);
+});
+document.addEventListener('keydown',e=>{
+  if(e.target.tagName==='INPUT'&&(e.key==='ArrowLeft'||e.key==='ArrowRight'))return;
+  if(e.key==='ArrowRight'||e.key==='PageDown'){e.preventDefault();setStep(step+1)}
+  else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();setStep(step-1)}
+  else if(e.key===' '||e.key==='Enter'){e.preventDefault();const a=PRIMARY[step];if(a)ACT[a]()}
+});
+function fit(){const s=Math.min(innerWidth/1600,innerHeight/800);$('stage').style.transform=`scale(${s})`}
+addEventListener('resize',fit);fit();
+setStep(0);
+</script>
+</body>
+</html>

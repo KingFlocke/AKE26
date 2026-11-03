@@ -1,0 +1,25 @@
+{
+ "ergebnisse": [
+  {
+   "Modell": "LightGBM",
+   "MAE": 838,
+   "RMSE": 1105,
+   "MAPE": 4.11,
+   "MASE": 0.789
+  },
+  {
+   "Modell": "Saisonal naiv",
+   "MAE": 1886,
+   "RMSE": 2597,
+   "MAPE": 9.87,
+   "MASE": 1.774
+  },
+  {
+   "Modell": "Netzbetreiber",
+   "MAE": 821,
+   "RMSE": 1056,
+   "MAPE": 3.93,
+   "MASE": 0.772
+  }
+ ]
+}

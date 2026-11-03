@@ -1,0 +1,7 @@
+{
+ "data": 1.0,
+ "trend": 0.01,
+ "seasonal24": 0.661,
+ "seasonal168": 0.335,
+ "remainder": 0.011
+}

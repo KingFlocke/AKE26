@@ -1,0 +1,74 @@
+{
+ "tabelle": [
+  {
+   "Modell": "Netzbetreiber (Day-ahead)",
+   "MAE": 466,
+   "RMSE": 574,
+   "MAPE": 2.29,
+   "MASE": 0.438
+  },
+  {
+   "Modell": "LightGBM",
+   "MAE": 488,
+   "RMSE": 616,
+   "MAPE": 2.4,
+   "MASE": 0.459
+  },
+  {
+   "Modell": "TFT (Median)",
+   "MAE": 586,
+   "RMSE": 732,
+   "MAPE": 2.79,
+   "MASE": 0.551
+  },
+  {
+   "Modell": "MSTL + ETS",
+   "MAE": 673,
+   "RMSE": 987,
+   "MAPE": 3.26,
+   "MASE": 0.633
+  },
+  {
+   "Modell": "LSTM",
+   "MAE": 745,
+   "RMSE": 953,
+   "MAPE": 3.57,
+   "MASE": 0.701
+  },
+  {
+   "Modell": "Saisonal naiv (Vorwoche)",
+   "MAE": 927,
+   "RMSE": 1467,
+   "MAPE": 4.43,
+   "MASE": 0.872
+  },
+  {
+   "Modell": "Naiv (Vortag)",
+   "MAE": 1562,
+   "RMSE": 2350,
+   "MAPE": 7.64,
+   "MASE": 1.469
+  },
+  {
+   "Modell": "SARIMA(3,0,0)(2,1,0)24",
+   "MAE": 1620,
+   "RMSE": 2132,
+   "MAPE": 7.78,
+   "MASE": 1.523
+  },
+  {
+   "Modell": "ETS(A,N,A), s = 24",
+   "MAE": 1758,
+   "RMSE": 2255,
+   "MAPE": 8.65,
+   "MASE": 1.654
+  },
+  {
+   "Modell": "AutoETS (Automatik)",
+   "MAE": 4778,
+   "RMSE": 6239,
+   "MAPE": 20.93,
+   "MASE": 4.494
+  }
+ ]
+}
