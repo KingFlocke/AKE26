@@ -16,10 +16,10 @@
   },
   {
    "Modell": "TFT (Median)",
-   "MAE": 586,
-   "RMSE": 732,
-   "MAPE": 2.79,
-   "MASE": 0.551
+   "MAE": 598,
+   "RMSE": 761,
+   "MAPE": 2.89,
+   "MASE": 0.563
   },
   {
    "Modell": "MSTL + ETS",

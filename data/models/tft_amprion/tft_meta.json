@@ -1,0 +1,15 @@
+{
+  "epochen": 16,
+  "trainingszeit_s": 402,
+  "val_loss": 276.1573791503906,
+  "parameter": 64319,
+  "encoder": 168,
+  "horizont": 24,
+  "quantile": [
+    0.1,
+    0.5,
+    0.9
+  ],
+  "training": "2018-01-01 bis 2019-08-31",
+  "validierung": "2019-09"
+}
