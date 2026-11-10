@@ -1,0 +1,12 @@
+# Hyperparameter des Traegermodells (Werte aus Lab 2, Aufgaben 4.3-4.5)
+train:
+  seed: 0
+  head:
+    lr: 0.01
+    epochs: 10
+    batch: 64
+  finetune:
+    lr_head: 0.001
+    lr_backbone: 0.0001
+    epochs: 2
+    batch: 32

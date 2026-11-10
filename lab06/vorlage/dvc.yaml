@@ -1,0 +1,53 @@
+# Pipeline des Traegermodells (AKE Lab 6): prepare -> featurize -> train -> evaluate
+# cmd    = Befehl, den DVC ausfuehrt (immer aus dem Hauptordner des Repos)
+# deps   = alles, wovon das Ergebnis abhaengt - auch das Skript selbst
+# params = Schluessel aus params.yaml
+# outs   = Ergebnisse; DVC legt sie im Cache ab und traegt sie in .gitignore ein
+# metrics mit cache: false = kleine JSON-Dateien, die in Git bleiben
+stages:
+  prepare:
+    cmd: python lab06/prepare.py
+    deps:
+      - lab06/prepare.py
+      - data/imagenette5
+    outs:
+      - lab06/data/manifest.csv
+    metrics:
+      - lab06/reports/datencheck.json:
+          cache: false
+  featurize:
+    cmd: python lab06/featurize.py
+    deps:
+      - lab06/featurize.py
+      - lab02/src/traeger.py
+      - lab06/data/manifest.csv
+      - data/models/resnet18-f37072fd.pth
+    outs:
+      - lab06/cache/features_resnet18_160_train.pt
+      - lab06/cache/features_resnet18_160_val.pt
+  train:
+    cmd: python lab06/train.py
+    deps:
+      - lab06/train.py
+      - lab02/src/traeger.py
+      - lab06/data/manifest.csv
+      - lab06/cache/features_resnet18_160_train.pt
+      - lab06/cache/features_resnet18_160_val.pt
+      - data/models/resnet18-f37072fd.pth
+      - models/traeger_v1.yaml.template
+    params:
+      - train
+    outs:
+      - models/traeger_v1.pt
+      - models/traeger_v1.yaml
+  evaluate:
+    cmd: python lab06/evaluate.py
+    deps:
+      - lab06/evaluate.py
+      - lab02/src/traeger.py
+      - lab06/data/manifest.csv
+      - models/traeger_v1.pt
+      - models/traeger_v1.yaml
+    metrics:
+      - lab06/reports/metrics.json:
+          cache: false
