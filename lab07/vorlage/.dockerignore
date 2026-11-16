@@ -1,0 +1,7 @@
+*
+!lab02/src
+!lab07/app.py
+!lab07/model
+!lab07/requirements-service.txt
+!models/traeger_v1.yaml
+**/__pycache__

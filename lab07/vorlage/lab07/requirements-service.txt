@@ -1,0 +1,8 @@
+# Pakete, die der Service zur Laufzeit braucht (ohne PyTorch - das installiert das Dockerfile vorher als CPU-Variante).
+# mlflow-skinny = MLflow ohne Server und Oberflaeche; zum Laden eines PyTorch-Modells braucht es zusaetzlich pandas.
+fastapi==0.142.2
+uvicorn==0.54.0
+mlflow-skinny==2.22.5
+pandas
+pillow
+pyyaml

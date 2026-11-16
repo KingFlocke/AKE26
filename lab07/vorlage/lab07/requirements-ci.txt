@@ -1,0 +1,7 @@
+# Pakete fuer den Job "test" im CI-Workflow: PyTorch (CPU) + alles, was der Service braucht + die Testwerkzeuge.
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch==2.8.0
+torchvision==0.23.0
+-r requirements-service.txt
+pytest
+httpx
